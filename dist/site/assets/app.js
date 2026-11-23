@@ -253,15 +253,24 @@ function weekPage(P,ctx){
   }};
 }
 
+const SVG_BULB = '<svg viewBox="0 0 100 112" fill="none" stroke="#30343f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 20 C31 20 21 34 21 48 C21 59 27 65 33 73 C36 78 37 81 37 87 H63 C63 81 64 78 67 73 C73 65 79 59 79 48 C79 34 69 20 50 20 Z"/><path d="M38 95 H62 M43 103 H57"/><path d="M50 3 V10 M17 15 L22 21 M83 15 L78 21 M5 40 L12 43 M95 40 L88 43"/><path d="M37 52 C37 44 42 39 49 37"/></svg>';
+
 function projectPage(P,ctx){
-  const h = `<div style="--c:${P.color}">
-  ${ctx.mode==='embed'?`<div class="week-head"><div><span class="badge">Proyecto ${P.n} · ${P.unitLabel}</span><h2>${P.title}</h2><p>${P.summary}</p></div></div>`:''}
-  <div class="sec"><h3><span class="dot"></span>El reto</h3>${P.intro.map(p=>`<p>${p}</p>`).join('')}<div class="kv">${P.facts.map(f=>`<div><b>${f[0]}</b><span>${f[1]}</span></div>`).join('')}</div></div>
-  <div class="sec"><h3><span class="dot"></span>Entregables</h3><ul>${P.deliverables.map(d=>`<li>${d}</li>`).join('')}</ul></div>
-  <div class="sec"><h3><span class="dot"></span>Cronograma</h3>${P.phases.map(p=>`<div class="phase"><b>${p[0]}</b><div><b style="all:unset;font-weight:600;color:var(--brand)">${p[1]}</b><br><span style="color:var(--muted);font-size:.93rem">${p[2]}</span></div></div>`).join('')}</div>
-  <div class="sec"><h3><span class="dot"></span>Lista de avance</h3><p style="color:var(--muted);font-size:.92rem">Marca lo que ya hiciste (se guarda en este navegador).</p>${checklistHTML(P.checklist,P.id)}</div>
-  <div class="sec"><h3><span class="dot"></span>Rúbrica (100 pts)</h3><div class="tblwrap"><table class="rubric"><thead><tr>${['Criterio','Excelente','Bien','Por mejorar','Pts'].map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${P.rubric.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div>${P.note?`<div class="note"><b class="t">Consejo</b>${P.note}</div>`:''}</div></div>`;
-  return {html:h,mount(root){mountChecklists(root)}};
+  const emb = ctx.mode==='embed';
+  const li = a => a.map(x=>`<li>${x}</li>`).join('');
+  let h = `<div class="pj">`;
+  if(emb) h += `<div class="pj-head"><h2>${P.title}</h2><p>${P.summary}</p></div>`;
+  h += `<div class="pband"><h2>Objetivo</h2></div><div class="pcol"><div class="bulb">${SVG_BULB}</div><h3 class="oh">Objetivo General del Proyecto</h3><p class="j">${P.goal}</p></div>`;
+  P.phases.forEach(f=>{
+    h += `<div class="pband"><h2>${f.t}</h2></div><div class="pcol"><h3 class="oh">Objetivo:</h3><p class="j">${f.goal}</p><h4 class="ih">Instrucciones</h4><ul class="sq j">${li(f.steps)}</ul>${f.eval?`<h4 class="ih">Evaluación</h4><ul class="sq j">${li(f.eval)}</ul>`:''}</div>`;
+  });
+  h += `<div class="pband"><h2>GALERÍA DE EVIDENCIAS</h2></div><div class="pcol"><a class="gbtn" href="${ctx.href(P.gallery)}">Ir a la Galería</a></div></div>`;
+  return {html:h,mount(){}};
+}
+
+function galleryPage(P,ctx){
+  const tiles = [1,2,3,4,5,6].map(k=>`<div class="gt">Espacio para evidencia ${k}</div>`).join('');
+  return {html:`<div class="gal"><p class="j">Fotografías y capturas del trabajo realizado por los estudiantes durante el proyecto.</p><div class="gg">${tiles}</div><a class="gbtn line" href="${ctx.href(P.project)}">Volver al proyecto</a></div>`,mount(){}};
 }
 
 const ORD = ['1ra','2da','3ra'];
@@ -319,17 +328,17 @@ function glossaryPage(P,ctx){
 }
 
 function projectsPage(P,ctx){
-  return {html:`<div class="circles big">${P.projects.map(p=>`<a class="ci" href="${ctx.href(p.id)}"><span class="c">${p.n}</span><span class="lb">Proyecto ${p.n}</span><span class="sb">${p.title}</span></a>`).join('')}</div>`,mount(){}};
+  return {html:`<div class="circles big">${P.projects.map((p,i)=>`<a class="ci" href="${ctx.href(p.id)}"><span class="c">${p.n}</span><span class="lb">${ORD[i]} unidad</span></a>`).join('')}</div>`,mount(){}};
 }
 
-const TYPES={contents:contentsPage,week:weekPage,project:projectPage,projects:projectsPage,unit:unitPage,home:homePage,games:gamesPage,glossary:glossaryPage};
+const TYPES={contents:contentsPage,week:weekPage,project:projectPage,gallery:galleryPage,projects:projectsPage,unit:unitPage,home:homePage,games:gamesPage,glossary:glossaryPage};
 
 /* ---------------- Marco del sitio ---------------- */
 function navHTML(S,ctx,P){
   const on = (id,types)=>(P.id===id||P.parent===id||(types&&types.includes(P.type)))?' on':'';
   const items = [`<div class="item"><a class="top${on('index')}" href="${ctx.href('index')}">Inicio</a></div>`];
   items.push(`<div class="item has"><a class="top${on('contenidos',['contents','unit','week'])}" href="${ctx.href('contenidos')}">Contenidos</a><div class="drop">${S.units.map(u=>`<a class="${P.unitId===u.id||P.id===u.id?'on':''}" href="${ctx.href(u.id)}">${u.label}</a>`).join('')}</div></div>`);
-  items.push(`<div class="item has"><a class="top${on('proyectos',['projects','project'])}" href="${ctx.href('proyectos')}">Proyectos</a><div class="drop">${S.projects.map(p=>`<a class="${P.id===p.id?'on':''}" href="${ctx.href(p.id)}">Proyecto ${p.n}</a>`).join('')}</div></div>`);
+  items.push(`<div class="item has"><a class="top${on('proyectos',['projects','project','gallery'])}" href="${ctx.href('proyectos')}">Proyectos</a><div class="drop">${S.projects.map(p=>`<a class="${P.id===p.id?'on':''}" href="${ctx.href(p.id)}">Proyecto U${p.n}</a><a class="${P.id===p.gallery?'on':''}" href="${ctx.href(p.gallery)}">Galería de Evidencias U${p.n}</a>`).join('')}</div></div>`);
   return items.join('');
 }
 
@@ -346,8 +355,9 @@ function heroText(P){
     case 'week': return {h:'Semana '+P.n};
     case 'unit': return {h:'Semanas de Trabajo',it:true};
     case 'contents': return {h:'Unidades',it:true};
-    case 'projects': return {h:'Proyectos',it:true};
-    case 'project': return {h:'Proyecto '+P.n};
+    case 'projects': return {h:'Unidades',it:true};
+    case 'project': return {h:P.title,it:true,tag:P.summary};
+    case 'gallery': return {h:P.title,it:true};
     case 'games': return {h:'Zona de juegos'};
     default: return {h:P.title};
   }
@@ -360,10 +370,12 @@ function logoImg(cls,fallback){
 function bandHTML(P,ctx){
   switch(P.type){
     case 'home': return `<section class="band logo-band">${logoImg('band-logo',"this.outerHTML='<div class=&quot;wordmark&quot;>LICEO TEC</div>'")}</section>`;
-    case 'week': case 'project': return `<section class="band"><h2>${P.title}</h2></section>`;
+    case 'week': return `<section class="band"><h2>${P.title}</h2></section>`;
+    case 'project': return '';
+    case 'gallery': return `<section class="band"><p class="it">Evidencias del proyecto de la unidad ${P.n}</p></section>`;
     case 'unit': return `<section class="band"><p class="it">¡Haz click en los íconos para ingresar a cada sesión de clases!</p></section>`;
     case 'contents': return `<section class="band"><p class="it">¡Haz click en los íconos para ingresar a la unidad correspondiente!</p></section>`;
-    case 'projects': return `<section class="band"><p class="it">¡Haz click en los íconos para ingresar al proyecto correspondiente!</p></section>`;
+    case 'projects': return `<section class="band"><p class="it">¡Haz click en los íconos para ingresar a los proyectos!</p></section>`;
     default: return `<section class="band"><h2>${P.title}</h2></section>`;
   }
 }
@@ -375,14 +387,14 @@ function render(P,site,mode){
   const app=document.getElementById('app');
   if(mode==='embed'){
     document.body.classList.add('embed');
-    app.innerHTML=`<div class="wrap">${comp.html}</div>`;
+    app.innerHTML=`<div class="wrap${P.type==='project'?' full':''}">${comp.html}</div>`;
     comp.mount(app); return;
   }
   const ht=heroText(P);
   document.title = (P.type==='home'?'':P.title+' · ')+site.title;
   app.innerHTML=`<header class="site-header" id="hdr"><div class="in"><button class="burger" aria-label="Menú"><span></span><span></span><span></span></button><a class="brand" href="${ctx.href('index')}">${logoImg('hd-logo',"this.remove()")}<span>${site.shortTitle}</span></a><nav class="nav">${navHTML(site,ctx,P)}</nav></div></header>
   <section class="hero"><div class="in"><h1${ht.it?' class="it"':''}>${ht.h}</h1><span class="bar"></span>${ht.tag?`<p class="tag">${ht.tag}</p>`:''}</div></section>${bandHTML(P,ctx)}
-  <main class="wrap${P.type==='home'?' home':''}">${comp.html}</main>
+  <main class="wrap${P.type==='home'?' home':''}${P.type==='project'?' full':''}">${comp.html}</main>
   <footer class="site-footer"><div class="fbs"><a class="fb" href="${ctx.href('index')}">Página Principal</a><a class="fb" href="${ctx.href('contenidos')}">Unidades de Trabajo</a></div></footer>`;
   const hdr=$('#hdr',app), nav=$('.nav',app);
   const sync=()=>hdr.classList.toggle('solid',window.scrollY>40||nav.classList.contains('open'));

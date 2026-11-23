@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kit de recuperación y guía de reinstalación</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&family=Lato:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet"><style>/* ============================================================
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kit de Rescate Digital</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&family=Lato:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet"><style>/* ============================================================
    Reparación y Soporte Técnico · 5to Bachillerato
    Tema editable: cambia solo las variables de :root
    ============================================================ */
@@ -396,6 +396,33 @@ body.embed .wrap>.crumbs{display:none}
   .wk>.c{width:92px;height:92px;font-size:2.6rem}
   .vm-i h3{font-size:2.4rem}
 }
+
+/* ---- Proyectos: estructura del sitio de referencia (banda Objetivo, fases, galería) ---- */
+.wrap.full{max-width:none;padding:0 0 10px}
+.pj{width:100%}
+.pj-head{max-width:900px;margin:0 auto;padding:10px 20px 16px;text-align:center}
+.pj-head h2{font-family:'Lato','Roboto',sans-serif;font-style:italic;font-weight:700;font-size:1.9rem;margin:0 0 4px}
+.pj-head p{font-family:'Lato','Roboto',sans-serif;font-style:italic;font-weight:700;color:var(--accent);margin:0}
+.pband{background:var(--accent);color:#fff;text-align:center;padding:40px 20px;min-height:112px;display:flex;align-items:center;justify-content:center;margin-top:34px}
+.pband:first-of-type{margin-top:0}
+.pband h2{color:#fff;font-family:var(--font-h);font-weight:700;font-size:clamp(1.6rem,4vw,1.95rem);margin:0}
+.pcol{max-width:760px;margin:0 auto;padding:34px 20px 8px}
+.pcol .j,.pcol ul.j{text-align:justify}
+.pcol p{line-height:1.75;margin:0 0 14px}
+.pcol .oh{font-family:var(--font-h);font-weight:700;color:var(--accent);font-size:1.7rem;margin:0 0 14px}
+.pcol .ih{font-family:var(--font-h);font-weight:700;color:#212121;font-size:1.05rem;margin:22px 0 10px}
+.pcol .bulb{width:150px;margin:0 auto 18px}
+.pcol .bulb svg{width:100%;height:auto;display:block}
+.pcol .sq{padding-left:26px;line-height:1.75;margin:0 0 10px}
+.pcol .sq li{margin-bottom:10px}
+.gbtn{display:block;max-width:560px;margin:12px auto 26px;background:#fff;color:var(--accent);border:1px solid #cfcfcf;border-radius:4px;padding:11px;text-align:center;text-decoration:none;font-size:1rem;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.gbtn:hover{background:#fff7f0}
+.gal{max-width:900px;margin:0 auto;padding:10px 20px 30px;text-align:center}
+.gg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:24px 0 10px}
+.gt{aspect-ratio:4/3;border:2px dashed #c9c9c9;border-radius:6px;display:grid;place-items:center;color:#8a8a8a;font-size:.95rem}
+body.embed .wrap.full{padding:0 0 10px;max-width:none}
+.pcol{font-size:1.1rem}
+.pj-head p{font-size:1.1rem}
 </style></head><body class="embed"><div id="app"></div><script>/* Ilustraciones SVG en línea (no dependen de imágenes externas) */
 window.ART = (function(){
   const F = 'font-family="Roboto,Segoe UI,Arial,sans-serif"';
@@ -752,15 +779,24 @@ function weekPage(P,ctx){
   }};
 }
 
+const SVG_BULB = '<svg viewBox="0 0 100 112" fill="none" stroke="#30343f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 20 C31 20 21 34 21 48 C21 59 27 65 33 73 C36 78 37 81 37 87 H63 C63 81 64 78 67 73 C73 65 79 59 79 48 C79 34 69 20 50 20 Z"/><path d="M38 95 H62 M43 103 H57"/><path d="M50 3 V10 M17 15 L22 21 M83 15 L78 21 M5 40 L12 43 M95 40 L88 43"/><path d="M37 52 C37 44 42 39 49 37"/></svg>';
+
 function projectPage(P,ctx){
-  const h = `<div style="--c:${P.color}">
-  ${ctx.mode==='embed'?`<div class="week-head"><div><span class="badge">Proyecto ${P.n} · ${P.unitLabel}</span><h2>${P.title}</h2><p>${P.summary}</p></div></div>`:''}
-  <div class="sec"><h3><span class="dot"></span>El reto</h3>${P.intro.map(p=>`<p>${p}</p>`).join('')}<div class="kv">${P.facts.map(f=>`<div><b>${f[0]}</b><span>${f[1]}</span></div>`).join('')}</div></div>
-  <div class="sec"><h3><span class="dot"></span>Entregables</h3><ul>${P.deliverables.map(d=>`<li>${d}</li>`).join('')}</ul></div>
-  <div class="sec"><h3><span class="dot"></span>Cronograma</h3>${P.phases.map(p=>`<div class="phase"><b>${p[0]}</b><div><b style="all:unset;font-weight:600;color:var(--brand)">${p[1]}</b><br><span style="color:var(--muted);font-size:.93rem">${p[2]}</span></div></div>`).join('')}</div>
-  <div class="sec"><h3><span class="dot"></span>Lista de avance</h3><p style="color:var(--muted);font-size:.92rem">Marca lo que ya hiciste (se guarda en este navegador).</p>${checklistHTML(P.checklist,P.id)}</div>
-  <div class="sec"><h3><span class="dot"></span>Rúbrica (100 pts)</h3><div class="tblwrap"><table class="rubric"><thead><tr>${['Criterio','Excelente','Bien','Por mejorar','Pts'].map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${P.rubric.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div>${P.note?`<div class="note"><b class="t">Consejo</b>${P.note}</div>`:''}</div></div>`;
-  return {html:h,mount(root){mountChecklists(root)}};
+  const emb = ctx.mode==='embed';
+  const li = a => a.map(x=>`<li>${x}</li>`).join('');
+  let h = `<div class="pj">`;
+  if(emb) h += `<div class="pj-head"><h2>${P.title}</h2><p>${P.summary}</p></div>`;
+  h += `<div class="pband"><h2>Objetivo</h2></div><div class="pcol"><div class="bulb">${SVG_BULB}</div><h3 class="oh">Objetivo General del Proyecto</h3><p class="j">${P.goal}</p></div>`;
+  P.phases.forEach(f=>{
+    h += `<div class="pband"><h2>${f.t}</h2></div><div class="pcol"><h3 class="oh">Objetivo:</h3><p class="j">${f.goal}</p><h4 class="ih">Instrucciones</h4><ul class="sq j">${li(f.steps)}</ul>${f.eval?`<h4 class="ih">Evaluación</h4><ul class="sq j">${li(f.eval)}</ul>`:''}</div>`;
+  });
+  h += `<div class="pband"><h2>GALERÍA DE EVIDENCIAS</h2></div><div class="pcol"><a class="gbtn" href="${ctx.href(P.gallery)}">Ir a la Galería</a></div></div>`;
+  return {html:h,mount(){}};
+}
+
+function galleryPage(P,ctx){
+  const tiles = [1,2,3,4,5,6].map(k=>`<div class="gt">Espacio para evidencia ${k}</div>`).join('');
+  return {html:`<div class="gal"><p class="j">Fotografías y capturas del trabajo realizado por los estudiantes durante el proyecto.</p><div class="gg">${tiles}</div><a class="gbtn line" href="${ctx.href(P.project)}">Volver al proyecto</a></div>`,mount(){}};
 }
 
 const ORD = ['1ra','2da','3ra'];
@@ -818,17 +854,17 @@ function glossaryPage(P,ctx){
 }
 
 function projectsPage(P,ctx){
-  return {html:`<div class="circles big">${P.projects.map(p=>`<a class="ci" href="${ctx.href(p.id)}"><span class="c">${p.n}</span><span class="lb">Proyecto ${p.n}</span><span class="sb">${p.title}</span></a>`).join('')}</div>`,mount(){}};
+  return {html:`<div class="circles big">${P.projects.map((p,i)=>`<a class="ci" href="${ctx.href(p.id)}"><span class="c">${p.n}</span><span class="lb">${ORD[i]} unidad</span></a>`).join('')}</div>`,mount(){}};
 }
 
-const TYPES={contents:contentsPage,week:weekPage,project:projectPage,projects:projectsPage,unit:unitPage,home:homePage,games:gamesPage,glossary:glossaryPage};
+const TYPES={contents:contentsPage,week:weekPage,project:projectPage,gallery:galleryPage,projects:projectsPage,unit:unitPage,home:homePage,games:gamesPage,glossary:glossaryPage};
 
 /* ---------------- Marco del sitio ---------------- */
 function navHTML(S,ctx,P){
   const on = (id,types)=>(P.id===id||P.parent===id||(types&&types.includes(P.type)))?' on':'';
   const items = [`<div class="item"><a class="top${on('index')}" href="${ctx.href('index')}">Inicio</a></div>`];
   items.push(`<div class="item has"><a class="top${on('contenidos',['contents','unit','week'])}" href="${ctx.href('contenidos')}">Contenidos</a><div class="drop">${S.units.map(u=>`<a class="${P.unitId===u.id||P.id===u.id?'on':''}" href="${ctx.href(u.id)}">${u.label}</a>`).join('')}</div></div>`);
-  items.push(`<div class="item has"><a class="top${on('proyectos',['projects','project'])}" href="${ctx.href('proyectos')}">Proyectos</a><div class="drop">${S.projects.map(p=>`<a class="${P.id===p.id?'on':''}" href="${ctx.href(p.id)}">Proyecto ${p.n}</a>`).join('')}</div></div>`);
+  items.push(`<div class="item has"><a class="top${on('proyectos',['projects','project','gallery'])}" href="${ctx.href('proyectos')}">Proyectos</a><div class="drop">${S.projects.map(p=>`<a class="${P.id===p.id?'on':''}" href="${ctx.href(p.id)}">Proyecto U${p.n}</a><a class="${P.id===p.gallery?'on':''}" href="${ctx.href(p.gallery)}">Galería de Evidencias U${p.n}</a>`).join('')}</div></div>`);
   return items.join('');
 }
 
@@ -845,8 +881,9 @@ function heroText(P){
     case 'week': return {h:'Semana '+P.n};
     case 'unit': return {h:'Semanas de Trabajo',it:true};
     case 'contents': return {h:'Unidades',it:true};
-    case 'projects': return {h:'Proyectos',it:true};
-    case 'project': return {h:'Proyecto '+P.n};
+    case 'projects': return {h:'Unidades',it:true};
+    case 'project': return {h:P.title,it:true,tag:P.summary};
+    case 'gallery': return {h:P.title,it:true};
     case 'games': return {h:'Zona de juegos'};
     default: return {h:P.title};
   }
@@ -859,10 +896,12 @@ function logoImg(cls,fallback){
 function bandHTML(P,ctx){
   switch(P.type){
     case 'home': return `<section class="band logo-band">${logoImg('band-logo',"this.outerHTML='<div class=&quot;wordmark&quot;>LICEO TEC</div>'")}</section>`;
-    case 'week': case 'project': return `<section class="band"><h2>${P.title}</h2></section>`;
+    case 'week': return `<section class="band"><h2>${P.title}</h2></section>`;
+    case 'project': return '';
+    case 'gallery': return `<section class="band"><p class="it">Evidencias del proyecto de la unidad ${P.n}</p></section>`;
     case 'unit': return `<section class="band"><p class="it">¡Haz click en los íconos para ingresar a cada sesión de clases!</p></section>`;
     case 'contents': return `<section class="band"><p class="it">¡Haz click en los íconos para ingresar a la unidad correspondiente!</p></section>`;
-    case 'projects': return `<section class="band"><p class="it">¡Haz click en los íconos para ingresar al proyecto correspondiente!</p></section>`;
+    case 'projects': return `<section class="band"><p class="it">¡Haz click en los íconos para ingresar a los proyectos!</p></section>`;
     default: return `<section class="band"><h2>${P.title}</h2></section>`;
   }
 }
@@ -874,14 +913,14 @@ function render(P,site,mode){
   const app=document.getElementById('app');
   if(mode==='embed'){
     document.body.classList.add('embed');
-    app.innerHTML=`<div class="wrap">${comp.html}</div>`;
+    app.innerHTML=`<div class="wrap${P.type==='project'?' full':''}">${comp.html}</div>`;
     comp.mount(app); return;
   }
   const ht=heroText(P);
   document.title = (P.type==='home'?'':P.title+' · ')+site.title;
   app.innerHTML=`<header class="site-header" id="hdr"><div class="in"><button class="burger" aria-label="Menú"><span></span><span></span><span></span></button><a class="brand" href="${ctx.href('index')}">${logoImg('hd-logo',"this.remove()")}<span>${site.shortTitle}</span></a><nav class="nav">${navHTML(site,ctx,P)}</nav></div></header>
   <section class="hero"><div class="in"><h1${ht.it?' class="it"':''}>${ht.h}</h1><span class="bar"></span>${ht.tag?`<p class="tag">${ht.tag}</p>`:''}</div></section>${bandHTML(P,ctx)}
-  <main class="wrap${P.type==='home'?' home':''}">${comp.html}</main>
+  <main class="wrap${P.type==='home'?' home':''}${P.type==='project'?' full':''}">${comp.html}</main>
   <footer class="site-footer"><div class="fbs"><a class="fb" href="${ctx.href('index')}">Página Principal</a><a class="fb" href="${ctx.href('contenidos')}">Unidades de Trabajo</a></div></footer>`;
   const hdr=$('#hdr',app), nav=$('.nav',app);
   const sync=()=>hdr.classList.toggle('solid',window.scrollY>40||nav.classList.contains('open'));
@@ -893,4 +932,4 @@ function render(P,site,mode){
 
 window.RST={render};
 })();
-</script><script>window.PAGE={"type":"project","parent":"proyectos","eyebrow":"Proyecto 2 · Unidad 2","sub":"Crea un USB de rescate, una máquina virtual y una guía para reinstalar y respaldar un sistema.","heroTitle":" Kit de recuperación y guía de reinstalación","id":"proyecto-2","n":2,"unitLabel":"Unidad 2","color":"#e07a2c","icon":"","title":"Kit de recuperación y guía de reinstalación","short":"Kit de recuperación","summary":"Crea un USB de rescate, una máquina virtual y una guía para reinstalar y respaldar un sistema.","intro":["Un usuario perdió el acceso a su computadora y no tiene respaldo. Tu misión es construir un \u003cb>kit de recuperación\u003c/b> que permita reinstalar el sistema, recuperar los datos y dejarlo protegido.","El resultado es un conjunto de herramientas y una guía que cualquier compañero pueda seguir."],"facts":[["Duración","Semanas 6 a 10 de la Unidad 2"],["Equipo","Grupos de 3 estudiantes"],["Recursos","USB 16 GB o más, VirtualBox, ISO oficiales"],["Producto","USB de rescate + VM + guía + demostración"]],"deliverables":["USB multiarranque (Ventoy o Rufus) con al menos: instalador de Windows y una distribución Linux en modo Live.","Carpeta “Herramientas” con CrystalDiskInfo, CPU-Z, MemTest86, 7-Zip y antivirus portátil (de fuentes oficiales).","Máquina virtual con Windows o Linux instalada y configurada.","Guía de reinstalación paso a paso con capturas (mínimo 12 pasos).","Plan de respaldo 3-2-1 para un usuario.","Demostración en vivo: simular una falla y recuperarla."],"phases":[["Sem. 6","Herramientas","Preparar USB de rescate y recopilar utilidades legales."],["Sem. 7","Diagnóstico de fallas","Practicar modo seguro, WinRE y comandos sfc/chkdsk."],["Sem. 8","Máquina virtual","Instalar y documentar un sistema en VirtualBox."],["Sem. 9","Seguridad","Antivirus, contraseñas, plan 3-2-1 y prueba de restauración."],["Sem. 10","Demostración","Presentación y simulacro de recuperación."]],"checklist":["Descargué las ISO desde sitios oficiales","Creé el USB multiarranque y probé que arranca","Reuní las herramientas portátiles en una carpeta","Creé la máquina virtual","Documenté la instalación con capturas","Simulé una falla (BSOD, no arranca, etc.)","Recuperé el sistema con WinRE o la imagen","Hice un respaldo y probé la restauración","Redacté la guía de 12 pasos","Preparé la demostración en vivo"],"rubric":[["USB de rescate funcional","Arranca en distintos equipos y está organizado","Funciona en un equipo","No arranca o está incompleto","20"],["Instalación y VM","Instalación completa y bien configurada","Funciona con detalles","No finalizada","20"],["Guía de reinstalación","Clara, ilustrada y reproducible","Entendible con huecos","Confusa","25"],["Respaldo y seguridad","Plan 3-2-1 aplicado y restauración probada","Plan aplicado sin probar","Sin respaldo","20"],["Demostración y legalidad del software","Segura, fluida y con software legal","Con tropiezos","Con software dudoso o sin ensayo","15"]],"note":"Todo el software del kit debe ser \u003cb>legal y oficial\u003c/b>. Citar la fuente de cada herramienta suma puntos."};RST.render(PAGE,{},'embed');</script></body></html>
+</script><script>window.PAGE={"type":"project","parent":"proyectos","id":"proyecto-2","n":2,"unitLabel":"Unidad 2","icon":"","title":"Kit de Rescate Digital","short":"Kit de recuperación","summary":"\"Todo problema tiene solución si estás preparado\"","goal":"Construir un kit de recuperación formado por un USB de rescate, una máquina virtual y una guía de reinstalación y respaldo, para resolver fallas de software y sistemas operativos de forma ordenada, segura y con software legal.","phases":[{"t":"FASE I: Reto","goal":"Plantear el caso de un usuario que perdió el acceso a su computadora y no tiene respaldo, para motivar la construcción de herramientas que permitan recuperar el sistema y los datos.","steps":["Presentación del caso: el equipo no arranca y el usuario no tiene copia de sus archivos.","Conversación guiada para identificar qué podría haber fallado: disco, sistema operativo, controladores o malware.","Análisis del problema: se necesita una forma ordenada y repetible de recuperar el equipo.","Formulación de la pregunta guía: ¿Qué herramientas necesita un técnico para recuperar un sistema y proteger los datos de un usuario?"],"eval":["Participación y análisis del caso (10 pts)."]},{"t":"FASE II: Investigación","goal":"Investigar cómo se instala, repara y respalda un sistema operativo, y dónde obtener herramientas de forma legal y oficial.","steps":["Investigación de las ISO oficiales de Windows y de una distribución Linux, y cómo verificar su descarga.","Funcionamiento del arranque desde USB y de la BIOS/UEFI.","Práctica de modo seguro, entorno de recuperación (WinRE) y comandos sfc y chkdsk.","Diferencia entre respaldo completo, incremental y la regla 3-2-1.","Selección de herramientas portátiles legales: CrystalDiskInfo, CPU-Z, MemTest86, 7-Zip y antivirus."],"eval":["Investigación y fuentes oficiales citadas (20 pts)."]},{"t":"FASE III: Creación","goal":"Crear el kit de rescate y la guía de reinstalación paso a paso, comprobando que cada parte funciona.","steps":["Creación de un USB multiarranque (Ventoy o Rufus) con instalador de Windows y una distribución Linux en modo Live.","Organización de una carpeta Herramientas con utilidades portátiles de fuentes oficiales.","Instalación y configuración de una máquina virtual en VirtualBox, documentada con capturas.","Simulación de una falla y recuperación del sistema con WinRE o una imagen.","Elaboración de un plan de respaldo 3-2-1 y prueba de restauración.","Redacción de una guía de reinstalación de mínimo 12 pasos con capturas."],"eval":["USB de rescate funcional (20 pts).","Máquina virtual e instalación (15 pts).","Guía de reinstalación (20 pts).","Respaldo y seguridad (10 pts)."]},{"t":"FASE IV: Presentación","goal":"Demostrar en vivo la recuperación de un equipo y comunicar con claridad el procedimiento seguido.","steps":["Demostración en vivo: simulación de una falla y recuperación con el kit.","Explicación de la guía y del plan de respaldo ante compañeros y docente.","Respuesta a preguntas sobre las decisiones técnicas y la legalidad del software utilizado.","Reflexión final sobre la importancia del respaldo y del software legal."],"eval":["Demostración y presentación (5 pts)."]}],"color":"#e07a2c","gallery":"galeria-2"};RST.render(PAGE,{},'embed');</script></body></html>
