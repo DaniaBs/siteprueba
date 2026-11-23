@@ -1,0 +1,794 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mesa de ayuda del colegio</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&family=Lato:ital,wght@1,700&display=swap" rel="stylesheet"><style>/* ============================================================
+   Reparación y Soporte Técnico · 5to Bachillerato
+   Tema editable: cambia solo las variables de :root
+   ============================================================ */
+:root{
+  --brand:#2e3340;        /* gris pizarra (banner, círculos) */
+  --brand-2:#e07a2c;      /* naranja (enlaces, pestañas activas) */
+  --accent:#e07a2c;       /* naranja institucional */
+  --accent-2:#f2a65a;
+  --ok:#1e9e5a;
+  --bad:#d64545;
+  --ink:#212121;
+  --muted:#5f6573;
+  --line:#e6e8ee;
+  --bg:#ffffff;
+  --card:#ffffff;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 3px 10px rgba(16,24,40,.06);
+  --font:'Open Sans','Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+  --font-h:'Roboto','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font);color:var(--ink);background:#fff;line-height:1.65;font-size:16px}
+img,svg{max-width:100%}
+a{color:var(--brand-2)}
+h1,h2,h3,h4{font-family:var(--font-h);color:var(--brand);line-height:1.25;margin:0 0 .5em;font-weight:700}
+p{margin:0 0 1em}
+button{font-family:inherit}
+
+/* ---------- Encabezado (estilo Google Sites) ---------- */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;color:#fff;transition:background .25s,box-shadow .25s,color .25s}
+.site-header.solid{background:#fff;color:var(--accent);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.site-header .in{max-width:1400px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:14px;min-height:64px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;font-family:var(--font-h);font-weight:500;font-size:1.12rem;letter-spacing:.07em;white-space:nowrap}
+.brand .logo{width:38px;height:38px;border-radius:10px;border:2px solid currentColor;display:grid;place-items:center;font-size:1.2rem}
+.nav{display:flex;gap:2px;margin-left:auto;align-items:center}
+.nav>.item{position:relative}
+.nav a.top{display:block;padding:22px 14px;color:inherit;text-decoration:none;font-size:.95rem;font-weight:500;letter-spacing:.05em;border-bottom:3px solid transparent}
+.nav a.top:hover,.nav>.item:hover>a.top,.nav a.top.on{border-bottom-color:currentColor}
+.nav .drop{display:none;position:absolute;right:0;top:100%;background:#fff;min-width:250px;border-radius:0 0 8px 8px;box-shadow:0 6px 18px rgba(0,0,0,.22);padding:8px;max-height:75vh;overflow:auto}
+.nav>.item:hover .drop,.nav>.item:focus-within .drop{display:block}
+.drop a{display:block;padding:9px 14px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:.9rem}
+.drop a:hover{background:#fdf0e4;color:var(--accent)}
+.drop a.on{background:#fdf0e4;color:var(--accent);font-weight:500}
+.burger{display:none;background:none;border:0;font-size:1.7rem;cursor:pointer;color:inherit;padding:6px 8px;order:-1}
+
+/* ---------- Banner: gris pizarra con íconos + subrayado naranja ---------- */
+.hero{position:relative;color:#fff;background-color:var(--brand);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320' fill='none' stroke='%23424958' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg transform='translate(20 22)'%3E%3Crect width='72' height='48' rx='5'/%3E%3Cpath d='M36 48v14M22 62h28'/%3E%3C/g%3E%3Cg transform='translate(205 48)'%3E%3Ccircle r='20'/%3E%3Ccircle r='27' stroke-width='9' stroke-dasharray='8 8.96'/%3E%3Ccircle r='7'/%3E%3C/g%3E%3Cg transform='translate(120 120)'%3E%3Crect width='44' height='44' rx='4'/%3E%3Crect x='12' y='12' width='20' height='20'/%3E%3Cpath d='M10 0v-8M22 0v-8M34 0v-8M10 44v8M22 44v8M34 44v8M0 10h-8M0 22h-8M0 34h-8M44 10h8M44 22h8M44 34h8'/%3E%3C/g%3E%3Cg transform='translate(252 185)'%3E%3Cpath d='M-24-6a34 34 0 0 1 48 0M-16 4a22 22 0 0 1 32 0M-8 14a10 10 0 0 1 16 0'/%3E%3Ccircle cy='24' r='2'/%3E%3C/g%3E%3Cg transform='translate(24 205) rotate(-35)'%3E%3Crect width='60' height='24' rx='4'/%3E%3Crect x='60' y='5' width='16' height='14'/%3E%3Cpath d='M12 8h10M12 16h10'/%3E%3C/g%3E%3Cg transform='translate(150 245)'%3E%3Crect width='34' height='52' rx='17'/%3E%3Cpath d='M17 0v20M0 20h34'/%3E%3C/g%3E%3Cg transform='translate(240 235) rotate(40)'%3E%3Crect width='14' height='34' rx='6'/%3E%3Cpath d='M7 34v34M5 68h4'/%3E%3C/g%3E%3Cg transform='translate(60 295)'%3E%3Ccircle r='12'/%3E%3Cpath d='M-6 0h12M0-6v12'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:320px 320px}
+.hero .in{max-width:1000px;margin:0 auto;padding:128px 20px 72px;text-align:center}
+.hero.tall .in{padding:150px 20px 96px}
+.hero h1{color:#fff;font-weight:500;font-size:clamp(2.1rem,5.2vw,3.2rem);margin:0}
+.hero h1.it{font-family:'Lato','Roboto',sans-serif;font-style:italic;font-weight:700}
+.hero .bar{display:block;width:112px;height:5px;background:var(--accent);margin:20px auto 0}
+.hero .tag{font-family:'Lato','Roboto',sans-serif;font-style:italic;font-weight:700;font-size:1.6rem;margin:16px 0 0}
+.band{background:var(--accent);color:#fff;text-align:center;padding:46px 20px}
+.band h2{color:#fff;font-size:clamp(1.5rem,3.6vw,1.95rem);margin:0}
+.band .it{font-family:'Lato','Roboto',sans-serif;font-style:italic;font-weight:700;font-size:clamp(1.15rem,3vw,1.45rem);margin:0;color:#fff;max-width:760px;margin:0 auto}
+.band .emblem{width:110px;height:110px;border-radius:24px;border:4px solid #fff;display:grid;place-items:center;font-size:3.2rem;margin:0 auto}
+.band .cta{margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ---------- Contenedor ---------- */
+.wrap{max-width:1000px;margin:0 auto;padding:34px 20px 60px}
+.wrap.wide{max-width:1100px}
+.crumbs{font-size:.85rem;color:var(--muted);margin-bottom:18px}
+.crumbs a{text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;text-decoration:none;font-weight:500;font-size:.95rem;padding:11px 22px;border-radius:99px;background:var(--accent);color:#fff;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(224,122,44,.4)}
+.btn.ghost{background:transparent;color:#fff;border:2px solid #fff}
+.btn.white{background:#fff;color:var(--accent)}
+.btn.dark{background:var(--brand);color:#fff}
+.btn.dark:hover{box-shadow:0 6px 16px rgba(46,51,64,.4)}
+.btn.line{background:#fff;color:var(--brand);border:2px solid var(--line)}
+.btn.sm{padding:7px 15px;font-size:.85rem}
+.btn[disabled]{opacity:.5;cursor:default;transform:none;box-shadow:none}
+
+/* ---------- Círculos (como la página de Unidades) ---------- */
+.circles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:34px 18px;justify-items:center;margin:10px 0 20px}
+.circles.big{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.ci{text-decoration:none;text-align:center;color:inherit;display:block;width:100%;max-width:230px;transition:transform .18s}
+.ci:hover{transform:translateY(-5px)}
+.ci .c{width:118px;height:118px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;margin:0 auto 12px;font-family:var(--font-h);font-weight:700;font-size:3.2rem;line-height:1;position:relative;box-shadow:0 4px 12px rgba(46,51,64,.25)}
+.circles.big .ci .c{width:150px;height:150px;font-size:4.6rem}
+.ci .c.emo{font-size:2.8rem}
+.ci:hover .c{background:var(--accent)}
+.ci .lb{display:block;color:var(--accent);font-weight:700;font-family:var(--font-h);text-transform:uppercase;letter-spacing:.04em;font-size:.95rem}
+.ci .sb{display:block;color:var(--muted);font-size:.85rem;margin-top:2px;line-height:1.35}
+.ci .star{position:absolute;top:-4px;right:-4px;font-size:1.4rem}
+.welcome{text-align:center;margin:6px 0 30px}
+.welcome h2{font-family:'Lato','Roboto',sans-serif;font-style:italic;color:var(--accent);font-size:clamp(1.4rem,3.4vw,1.9rem);margin:0 0 14px}
+.welcome p{max-width:720px;margin:0 auto 12px}
+.welcome hr{border:0;border-top:1px solid #222;max-width:640px;margin:18px auto 0}
+.infos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px;margin:30px 0 40px}
+.info-c{text-align:center}
+.info-c .c{width:150px;height:150px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;margin:0 auto 18px;font-size:3.6rem}
+.info-c h3{font-family:'Lato','Roboto',sans-serif;font-style:italic;color:var(--accent);font-size:1.9rem;margin-bottom:10px}
+.info-c p{max-width:340px;margin:0 auto;color:#444}
+
+/* ---------- Tarjetas y rejillas ---------- */
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;border:1px solid var(--line)}
+a.card{text-decoration:none;color:inherit;display:block;transition:transform .15s,box-shadow .15s}
+a.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(16,24,40,.12)}
+.card .ico{font-size:2rem;line-height:1;margin-bottom:10px;display:block}
+.card h3{font-size:1.1rem;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.93rem;margin:0}
+.card .tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:99px;color:#fff;background:var(--accent);margin-bottom:10px}
+.unit-card{border-top:6px solid var(--accent)}
+.section-title{font-size:1.55rem;margin:42px 0 18px;color:var(--accent);display:flex;align-items:center;gap:10px}
+.section-title::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,var(--line),transparent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:0 0 10px}
+.stat{background:#fff;border-radius:var(--radius);padding:14px 16px;text-align:center;border:1px solid var(--line)}
+.stat b{display:block;font-family:var(--font-h);font-size:1.7rem;color:var(--accent)}
+.stat span{font-size:.82rem;color:var(--muted)}
+
+/* ---------- Página de semana ---------- */
+.week-head{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-bottom:18px}
+.week-head .badge{display:inline-block;color:#fff;background:var(--c,var(--accent));padding:4px 14px;border-radius:99px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.week-head h2{font-size:1.7rem;margin:8px 0 4px}
+.week-head p{margin:0;color:var(--muted);max-width:640px}
+.week-head .big{font-size:3.4rem}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid var(--line);margin-bottom:22px}
+.tabs button{background:none;border:0;padding:11px 18px;font-size:.95rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;border-radius:8px 8px 0 0}
+.tabs button:hover{color:var(--brand-2);background:#f4f5f8}
+.tabs button.on{color:var(--brand-2);border-bottom-color:var(--c,var(--accent))}
+.pane{display:none;animation:fade .25s ease}
+.pane.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.objectives{background:linear-gradient(135deg,#fff3e8,#f4f5f8);border:1px solid #f3d6bb;border-radius:var(--radius);padding:18px 22px;margin-bottom:24px}
+.objectives h4{margin:0 0 8px;font-size:.95rem}
+.objectives ul{margin:0;padding-left:20px}
+.sec{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow)}
+.sec h3{color:var(--accent);font-size:1.25rem;display:flex;gap:10px;align-items:center}
+.sec h3 .dot{width:10px;height:26px;border-radius:5px;background:var(--c,var(--accent));flex:none}
+.sec ul,.sec ol{padding-left:22px;margin:0 0 1em}
+.sec li{margin-bottom:5px}
+.sec table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:.93rem}
+.sec th{background:var(--brand);color:#fff;text-align:left;padding:9px 12px;font-weight:500}
+.sec td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.sec tr:nth-child(even) td{background:#f8fafc}
+.sec .tblwrap{overflow-x:auto}
+.note{border-left:5px solid var(--accent);background:#fff4ea;border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:.95rem}
+.note.warn{border-color:var(--accent-2);background:#fff5ec}
+.note.safe{border-color:var(--ok);background:#effaf3}
+.note.bad{border-color:var(--bad);background:#fff1f1}
+.note b.t{display:block;font-family:var(--font-h);font-size:.85rem;margin-bottom:2px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:12px 0}
+.kv div{background:var(--bg);border-radius:10px;padding:12px 14px;border:1px solid var(--line)}
+.kv b{display:block;color:var(--brand);font-family:var(--font-h);font-size:.92rem;margin-bottom:2px}
+.kv span{font-size:.9rem;color:var(--muted)}
+code,kbd{background:#0f172a;color:#8ee7ff;padding:2px 7px;border-radius:6px;font-family:Consolas,'Courier New',monospace;font-size:.88em}
+kbd{background:#e9eef6;color:var(--brand);border:1px solid #cdd6e3;border-bottom-width:3px}
+pre.term{background:#0b1220;color:#d6f5ff;border-radius:12px;padding:14px 16px;overflow:auto;font-family:Consolas,'Courier New',monospace;font-size:.88rem;line-height:1.5}
+.video{position:relative;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:#000;box-shadow:var(--shadow);margin-bottom:12px}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.videoalt{display:flex;gap:14px;align-items:center;background:#fff;border:1px dashed #b8c4d6;border-radius:var(--radius);padding:18px;margin-bottom:12px}
+.videoalt .pl{font-size:2.4rem}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:34px;flex-wrap:wrap}
+
+/* ---------- Práctica ---------- */
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.meta span{background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:.84rem;color:var(--muted)}
+.check{list-style:none;padding:0!important}
+.check li{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:#fff;cursor:pointer;transition:background .15s}
+.check li:hover{background:#fff8f2}
+.check li.done{background:#effaf3;border-color:#bfe8cf;color:#2d6b49}
+.check li.done span{text-decoration:line-through}
+.check input{margin-top:5px;accent-color:var(--ok);width:17px;height:17px}
+.progress{height:10px;background:#e7edf5;border-radius:99px;overflow:hidden;margin:6px 0 14px}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--ok));transition:width .35s}
+
+/* ---------- Quiz ---------- */
+.quiz-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.q-top{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--muted);margin-bottom:6px}
+.q-text{font-family:var(--font-h);font-size:1.15rem;color:var(--brand);margin:8px 0 16px}
+.q-ctx{background:#f4f5f8;border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:.93rem}
+.q-ctx b{color:var(--brand)}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px;font-size:.96rem;cursor:pointer;transition:border-color .12s,background .12s,transform .12s;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--accent);background:#fff7f0;transform:translateX(3px)}
+.opt.right{border-color:var(--ok);background:#eaf9f0}
+.opt.wrong{border-color:var(--bad);background:#fff0f0}
+.opt[disabled]{cursor:default}
+.why{margin-top:6px;padding:12px 14px;border-radius:10px;background:#f5f6f9;font-size:.92rem;display:none}
+.why.on{display:block}
+.result{text-align:center;padding:14px 0}
+.result .score{font-family:var(--font-h);font-size:3rem;color:var(--brand-2);line-height:1}
+.result .medal{font-size:3.4rem;animation:pop .6s}
+@keyframes pop{0%{transform:scale(.2) rotate(-20deg)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
+
+/* ---------- Mini-juegos ---------- */
+.game{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:22px}
+.game-head{display:flex;gap:12px;align-items:center;margin-bottom:6px}
+.game-head .gi{font-size:1.8rem}
+.game-head h3{margin:0;font-size:1.15rem}
+.game .hint{color:var(--muted);font-size:.92rem;margin-bottom:14px}
+.stat-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 0;font-size:.88rem;color:var(--muted)}
+.stat-row b{color:var(--brand)}
+/* emparejar */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px}
+.match .col{display:flex;flex-direction:column;gap:10px}
+.mchip{border:2px solid var(--line);background:#fff;border-radius:12px;padding:11px 14px;cursor:pointer;font-size:.93rem;text-align:left;transition:all .15s;color:var(--ink)}
+.mchip:hover{border-color:var(--accent)}
+.mchip.sel{border-color:var(--accent);background:#fff0e2;box-shadow:0 0 0 3px rgba(224,122,44,.25)}
+.mchip.ok{border-color:var(--ok);background:#eaf9f0;color:#1b6d41;cursor:default}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+/* ordenar */
+.order{list-style:none;padding:0;margin:0}
+.order li{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--line);border-radius:12px;padding:9px 12px;margin-bottom:8px;font-size:.94rem}
+.order li .num{width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:.8rem;flex:none;font-weight:600}
+.order li .tx{flex:1}
+.order li.ok{border-color:var(--ok);background:#eaf9f0}
+.order li.bad{border-color:var(--bad);background:#fff0f0}
+.order .mv{display:flex;flex-direction:column;gap:2px}
+.order .mv button{border:1px solid var(--line);background:#f5f6f9;border-radius:6px;cursor:pointer;font-size:.72rem;line-height:1;padding:4px 8px;color:var(--brand)}
+.order .mv button:hover{background:var(--accent);color:#fff}
+/* clasificar */
+.cls-card{text-align:center;font-family:var(--font-h);font-size:1.3rem;background:linear-gradient(135deg,#f4f5f8,#fff3e8);border:2px dashed #c9ccd6;border-radius:16px;padding:30px 18px;margin:8px 0 16px;color:var(--brand);min-height:96px;display:grid;place-items:center}
+.cls-opts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.cls-opts button{flex:1 1 150px}
+.flash-ok{animation:flashok .5s}
+.flash-bad{animation:flashbad .5s}
+@keyframes flashok{0%{box-shadow:0 0 0 0 rgba(30,158,90,.7)}100%{box-shadow:0 0 0 22px rgba(30,158,90,0)}}
+@keyframes flashbad{0%{box-shadow:0 0 0 0 rgba(214,69,69,.7)}100%{box-shadow:0 0 0 22px rgba(214,69,69,0)}}
+/* memoria */
+.memory{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.mem{perspective:600px;height:96px;cursor:pointer;border:0;background:none;padding:0}
+.mem .in{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.mem.flip .in,.mem.done .in{transform:rotateY(180deg)}
+.mem .f,.mem .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:grid;place-items:center;padding:8px;text-align:center;font-size:.82rem}
+.mem .f{background:linear-gradient(135deg,var(--brand),var(--accent));color:#fff;font-size:1.7rem}
+.mem .b{background:#fff;border:2px solid var(--accent);transform:rotateY(180deg);color:var(--ink);font-weight:500}
+.mem.done .b{border-color:var(--ok);background:#eaf9f0}
+/* terminal */
+.cmd{background:#0b1220;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.cmd .bar{background:#1b2740;color:#9fb3d1;font-size:.78rem;padding:7px 12px;display:flex;gap:6px;align-items:center}
+.cmd .bar i{width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block}
+.cmd .bar i:nth-child(2){background:#ffbd2e}.cmd .bar i:nth-child(3){background:#27c93f}
+.cmd .out{height:260px;overflow:auto;padding:12px 14px;color:#cfe9ff;font-family:Consolas,'Courier New',monospace;font-size:.86rem;white-space:pre-wrap}
+.cmd .in-row{display:flex;border-top:1px solid #1f2d4a;font-family:Consolas,monospace}
+.cmd .in-row span{color:#8ee7ff;padding:10px 0 10px 14px;font-size:.86rem}
+.cmd input{flex:1;background:none;border:0;outline:0;color:#fff;font-family:inherit;font-size:.88rem;padding:10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chips button{background:#fff;border:1px solid var(--line);border-radius:99px;padding:5px 13px;font-size:.82rem;cursor:pointer;font-family:Consolas,monospace;color:var(--brand-2)}
+.chips button:hover{background:var(--accent);color:#04263a}
+/* hotspots */
+.hot{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;align-items:start}
+.hot svg{width:100%;height:auto;background:#1f232c;border-radius:14px}
+.hot svg [data-id]{cursor:pointer;transition:filter .15s}
+.hot svg [data-id]:hover{filter:brightness(1.4)}
+.hot svg [data-id].sel{filter:drop-shadow(0 0 6px #fff) brightness(1.5)}
+.hot .info{background:#fff8f2;border:1px solid #f0d9c4;border-radius:14px;padding:16px;min-height:150px}
+.hot .info h4{margin-bottom:6px}
+/* diagramas */
+.art{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin:12px 0;text-align:center}
+.art svg{width:100%;height:auto;max-height:420px}
+.art figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}
+/* proyectos */
+.rubric th:first-child,.rubric td:first-child{width:38%}
+.phase{display:grid;grid-template-columns:90px 1fr;gap:14px;align-items:start;padding:12px 0;border-bottom:1px dashed var(--line)}
+.phase:last-child{border-bottom:0}
+.phase b{background:var(--c,var(--accent));color:#fff;border-radius:10px;padding:6px 8px;text-align:center;font-size:.82rem;font-family:var(--font-h)}
+/* glosario */
+.search{width:100%;padding:13px 18px;border-radius:99px;border:2px solid var(--line);font-size:1rem;margin-bottom:16px;font-family:inherit}
+.search:focus{outline:0;border-color:var(--accent)}
+.gl{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.gl div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.gl b{color:var(--brand)}
+.gl small{display:block;color:var(--muted);font-size:.78rem}
+
+/* ---------- Pie ---------- */
+.site-footer{background:var(--accent);color:#fff;padding:40px 20px 34px;text-align:center;font-size:.9rem}
+.site-footer .fb{display:block;max-width:460px;margin:0 auto 22px;background:#fff;color:var(--accent);text-decoration:none;padding:13px;border-radius:4px;font-size:.95rem;letter-spacing:.03em}
+.site-footer .fb:hover{background:#fff7f0}
+.site-footer small{opacity:.9;display:block;margin-top:6px;line-height:1.5}
+/* ---------- Modo incrustado (embed) ---------- */
+body.embed{background:#fff}
+body.embed .wrap{padding:6px 4px 20px;max-width:1100px}
+body.embed .wrap>.crumbs{display:none}
+
+/* ---------- Responsive ---------- */
+@media (max-width:860px){
+  .burger{display:block}
+  .brand{font-size:1rem}
+  .nav{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;color:var(--ink);flex-direction:column;align-items:stretch;padding:6px 14px 16px;box-shadow:0 8px 14px rgba(0,0,0,.18);max-height:80vh;overflow:auto}
+  .nav.open{display:flex}
+  .nav a.top{padding:12px 6px;border-bottom:0;color:var(--ink)}
+  .nav .drop{display:block;position:static;box-shadow:none;padding:0 0 0 14px;max-height:none}
+  .hot{grid-template-columns:1fr}
+  .hero .in{padding-top:110px}
+}
+@media (max-width:560px){
+  .match{grid-template-columns:1fr}
+  .wrap{padding:24px 14px 50px}
+  .sec{padding:18px 16px}
+  .phase{grid-template-columns:1fr}
+  .ci .c{width:96px;height:96px;font-size:2.6rem}
+  .circles.big .ci .c{width:120px;height:120px;font-size:3.6rem}
+}
+</style></head><body class="embed"><div id="app"></div><script>/* Ilustraciones SVG en línea (no dependen de imágenes externas) */
+window.ART = (function(){
+  const F = 'font-family="Roboto,Segoe UI,Arial,sans-serif"';
+  const box = (x,y,w,h,t,fill,col='#fff',fs=14,sub='')=>
+    `<g><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="12" fill="${fill}"/>
+    <text x="${x+w/2}" y="${y+h/2+(sub?-4:5)}" text-anchor="middle" fill="${col}" font-size="${fs}" font-weight="600" ${F}>${t}</text>
+    ${sub?`<text x="${x+w/2}" y="${y+h/2+14}" text-anchor="middle" fill="${col}" opacity=".85" font-size="11" ${F}>${sub}</text>`:''}</g>`;
+  const arrow = (x1,y1,x2,y2,c='#5b6678')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="2.5" marker-end="url(#ah)"/>`;
+  const defs = `<defs><marker id="ah" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#5b6678"/></marker></defs>`;
+  const svg = (w,h,inner)=>`<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" role="img">${defs}${inner}</svg>`;
+
+  const motherboard = () => svg(600,420,`
+    <rect x="20" y="14" width="560" height="392" rx="10" fill="#0f5a3f" stroke="#1ea06d" stroke-width="3"/>
+    <g stroke="#2fd392" stroke-width="1" opacity=".35" fill="none"><path d="M40 60H260M40 80H220M300 380H560M420 40V120"/></g>
+    <!-- Panel trasero I/O -->
+    <g data-id="io"><rect x="20" y="36" width="82" height="170" fill="#8aa1b8" stroke="#cfe0f0"/><text x="61" y="125" fill="#1f232c" font-size="14" font-weight="700" text-anchor="middle" ${F} transform="rotate(-90 61 125)">PANEL I/O</text></g>
+    <!-- Disipador VRM -->
+    <rect x="120" y="30" width="120" height="22" rx="4" fill="#3a4a5c"/>
+    <!-- Socket CPU -->
+    <g data-id="cpu"><rect x="150" y="70" width="130" height="130" rx="8" fill="#c9d1da" stroke="#fff" stroke-width="2"/><rect x="172" y="92" width="86" height="86" rx="4" fill="#7b8794"/><text x="215" y="140" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" ${F}>CPU</text></g>
+    <g data-id="fan"><circle cx="215" cy="218" r="8" fill="#e5b84a"/><text x="230" y="222" fill="#fff" font-size="11" ${F}>CPU_FAN</text></g>
+    <!-- RAM -->
+    <g data-id="ram"><rect x="310" y="48" width="14" height="170" rx="3" fill="#2c3e50" stroke="#ffd166"/><rect x="334" y="48" width="14" height="170" rx="3" fill="#2c3e50" stroke="#ffd166"/><rect x="358" y="48" width="14" height="170" rx="3" fill="#2c3e50" stroke="#ffd166"/><rect x="382" y="48" width="14" height="170" rx="3" fill="#2c3e50" stroke="#ffd166"/><text x="353" y="240" text-anchor="middle" fill="#ffd166" font-size="13" font-weight="700" ${F}>RAM</text></g>
+    <!-- 24 pin -->
+    <g data-id="atx"><rect x="430" y="48" width="38" height="130" rx="4" fill="#f4f4f4"/><g fill="#999"><rect x="436" y="56" width="10" height="8"/><rect x="452" y="56" width="10" height="8"/><rect x="436" y="72" width="10" height="8"/><rect x="452" y="72" width="10" height="8"/><rect x="436" y="88" width="10" height="8"/><rect x="452" y="88" width="10" height="8"/><rect x="436" y="104" width="10" height="8"/><rect x="452" y="104" width="10" height="8"/></g><text x="449" y="198" text-anchor="middle" fill="#fff" font-size="11" ${F}>ATX 24 pin</text></g>
+    <!-- Chipset -->
+    <g data-id="chipset"><rect x="390" y="270" width="64" height="64" rx="6" fill="#3a4a5c" stroke="#9fb3c8"/><text x="422" y="307" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" ${F}>CHIPSET</text></g>
+    <!-- PCIe -->
+    <g data-id="pcie"><rect x="120" y="262" width="230" height="16" rx="3" fill="#111"/><rect x="120" y="300" width="150" height="14" rx="3" fill="#111"/><rect x="120" y="336" width="230" height="16" rx="3" fill="#111"/><text x="300" y="327" fill="#9fe7c8" font-size="12" ${F}>Ranuras PCIe</text></g>
+    <!-- M.2 -->
+    <g data-id="m2"><rect x="120" y="238" width="90" height="14" rx="3" fill="#566074"/><text x="216" y="250" fill="#fff" font-size="11" ${F}>M.2</text></g>
+    <!-- SATA -->
+    <g data-id="sata"><rect x="475" y="270" width="26" height="14" fill="#e35d5d"/><rect x="505" y="270" width="26" height="14" fill="#e35d5d"/><rect x="475" y="290" width="26" height="14" fill="#e35d5d"/><rect x="505" y="290" width="26" height="14" fill="#e35d5d"/><text x="503" y="324" text-anchor="middle" fill="#fff" font-size="11" ${F}>SATA</text></g>
+    <!-- Batería -->
+    <g data-id="bat"><circle cx="370" cy="372" r="22" fill="#cfd6de" stroke="#fff" stroke-width="2"/><text x="370" y="377" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="700" ${F}>CR2032</text></g>
+    <!-- Panel frontal -->
+    <g data-id="fpanel"><rect x="470" y="352" width="90" height="34" rx="4" fill="#222"/><g fill="#ffd166"><circle cx="486" cy="362" r="3"/><circle cx="500" cy="362" r="3"/><circle cx="514" cy="362" r="3"/><circle cx="528" cy="362" r="3"/><circle cx="486" cy="376" r="3"/><circle cx="500" cy="376" r="3"/><circle cx="514" cy="376" r="3"/><circle cx="528" cy="376" r="3"/></g><text x="515" y="398" text-anchor="middle" fill="#fff" font-size="10" ${F}>F_PANEL</text></g>
+    <!-- BIOS chip -->
+    <g data-id="bios"><rect x="296" y="360" width="44" height="26" rx="3" fill="#1a1a1a" stroke="#888"/><text x="318" y="377" text-anchor="middle" fill="#8ee7ff" font-size="10" font-weight="700" ${F}>BIOS</text></g>`);
+
+  const flow = () => svg(760,190,`
+    ${[['1','Identificar','el problema','#2e3340'],['2','Teoría','causa probable','#e07a2c'],['3','Probar','la teoría','#566074'],['4','Plan de','acción','#f2a65a'],['5','Implementar','y verificar','#1e9e5a'],['6','Documentar','hallazgos','#1f232c']].map((s,i)=>
+      `<g><rect x="${14+i*124}" y="40" width="108" height="100" rx="14" fill="${s[3]}"/><circle cx="${68+i*124}" cy="40" r="17" fill="#fff" stroke="${s[3]}" stroke-width="3"/><text x="${68+i*124}" y="46" text-anchor="middle" font-size="16" font-weight="700" fill="${s[3]}" ${F}>${s[0]}</text><text x="${68+i*124}" y="86" text-anchor="middle" fill="#fff" font-size="14" font-weight="600" ${F}>${s[1]}</text><text x="${68+i*124}" y="106" text-anchor="middle" fill="#fff" font-size="12" ${F}>${s[2]}</text></g>${i<5?arrow(124+i*124,90,136+i*124,90):''}`).join('')}
+    <text x="380" y="176" text-anchor="middle" fill="#5b6678" font-size="12" ${F}>Si la prueba falla, vuelve al paso 2 con una nueva teoría</text>`);
+
+  const post = () => svg(760,150,`
+    ${[['Encendido','PSU entrega energía','#f2a65a'],['POST','Prueba de hardware','#2e3340'],['BIOS/UEFI','Busca dispositivo de arranque','#566074'],['Gestor de arranque','Carga el sistema','#e07a2c'],['Sistema operativo','Escritorio listo','#1e9e5a']].map((s,i)=>
+      box(8+i*152,34,134,76,s[0],s[2],'#fff',13,s[1].length>20?'':s[1])+(i<4?arrow(142+i*152,72,158+i*152,72):'')).join('')}
+    <text x="380" y="140" text-anchor="middle" fill="#5b6678" font-size="12" ${F}>Un fallo en cada etapa produce síntomas distintos: sin energía, pitidos, “No bootable device”, pantalla azul…</text>`);
+
+  const network = () => svg(760,210,`
+    ${box(20,70,120,70,'💻 PC','#2e3340','#fff',16,'192.168.1.25')}
+    ${box(220,70,130,70,'📡 Router','#566074','#fff',16,'Puerta: 192.168.1.1')}
+    ${box(430,70,120,70,'🌐 DNS','#e07a2c','#fff',16,'8.8.8.8')}
+    ${box(630,70,110,70,'☁️ Internet','#1e9e5a','#fff',16)}
+    ${arrow(140,105,218,105)}${arrow(350,105,428,105)}${arrow(550,105,628,105)}
+    <text x="180" y="62" text-anchor="middle" font-size="12" fill="#5b6678" ${F}>ping 192.168.1.1</text>
+    <text x="490" y="62" text-anchor="middle" font-size="12" fill="#5b6678" ${F}>nslookup</text>
+    <text x="380" y="185" text-anchor="middle" font-size="13" fill="#1f232c" font-weight="600" ${F}>Prueba de adentro hacia afuera: PC → router → DNS → Internet</text>`);
+
+  const remote = () => svg(760,230,`
+    ${box(20,60,180,100,'🧑‍💻 Técnico','#2e3340','#fff',16,'Controla el equipo')}
+    ${box(290,20,180,60,'🔒 Servidores AnyDesk','#ef443b','#fff',14,'Conexión cifrada')}
+    ${box(560,60,180,100,'🧑 Usuario','#1e9e5a','#fff',16,'Comparte su ID y acepta')}
+    ${arrow(200,90,288,52)}${arrow(470,52,558,90)}
+    <line x1="200" y1="135" x2="558" y2="135" stroke="#ff8a3d" stroke-width="3" stroke-dasharray="7 6"/>
+    <text x="380" y="125" text-anchor="middle" fill="#c4600f" font-size="12" ${F}>sesión remota (pantalla, teclado, mouse, archivos)</text>
+    <text x="380" y="200" text-anchor="middle" fill="#5b6678" font-size="13" ${F}>El usuario SIEMPRE debe aceptar la conexión y puede cortarla cuando quiera</text>`);
+
+  const levels = () => svg(760,220,`
+    <polygon points="380,14 640,200 120,200" fill="#fdf0e4" stroke="#e07a2c" stroke-width="2"/>
+    <polygon points="380,14 480,86 280,86" fill="#566074"/><text x="380" y="68" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" ${F}>N3</text>
+    <polygon points="280,86 480,86 560,144 200,144" fill="#e07a2c"/><text x="380" y="122" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" ${F}>N2 · Especialista</text>
+    <polygon points="200,144 560,144 640,200 120,200" fill="#2e3340"/><text x="380" y="178" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" ${F}>N1 · Mesa de ayuda (primer contacto)</text>
+    <text x="660" y="60" font-size="12" fill="#5b6678" ${F}>Ingeniería /</text><text x="660" y="76" font-size="12" fill="#5b6678" ${F}>proveedor</text>
+    <text x="10" y="120" font-size="12" fill="#5b6678" ${F}>Menos casos,</text><text x="10" y="136" font-size="12" fill="#5b6678" ${F}>más complejos ↑</text>`);
+
+  const build = () => svg(760,170,`
+    ${['Gabinete','Fuente','CPU','Disipador','RAM','Placa en gabinete','Disco','Cables','Prueba'].map((t,i)=>
+      `<g><circle cx="${48+i*83}" cy="70" r="26" fill="${i%2?'#2e3340':'#e07a2c'}"/><text x="${48+i*83}" y="76" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" ${F}>${i+1}</text><text x="${48+i*83}" y="120" text-anchor="middle" fill="#1f232c" font-size="11" ${F}>${t}</text></g>${i<8?arrow(76+i*83,70,94+i*83,70):''}`).join('')}`);
+
+  const map = {motherboard,flow,post,network,remote,levels,build};
+
+  const spots = {
+    motherboard:{
+      cpu:['Socket del procesador (CPU)','El “cerebro”: ejecuta instrucciones. Se sujeta con una palanca; los pines/contactos son delicados. Lleva pasta térmica y disipador encima.'],
+      fan:['Conector CPU_FAN','Alimenta y controla el ventilador del procesador. Si no está conectado, la placa avisa “CPU Fan Error” y puede apagarse por calor.'],
+      ram:['Ranuras de memoria RAM','Memoria de trabajo temporal. Los módulos entran en una sola posición (muesca). Para doble canal se usan ranuras alternas (consulta el manual).'],
+      atx:['Conector ATX de 24 pines','Aquí llega la energía principal desde la fuente de poder. Una mala conexión impide el encendido.'],
+      chipset:['Chipset','Coordina la comunicación entre CPU, almacenamiento, USB y ranuras. Suele tener un pequeño disipador.'],
+      pcie:['Ranuras PCI Express','Para tarjeta de video, red, sonido o capturadoras. La más larga (x16) es normalmente para la GPU.'],
+      m2:['Ranura M.2','Para SSD NVMe/SATA tipo “chicle”. Se fija con un tornillo pequeño. ¡Revisa la compatibilidad!'],
+      sata:['Puertos SATA','Para discos duros y SSD de 2.5"/3.5" y unidades ópticas mediante cable de datos.'],
+      bat:['Batería CR2032','Mantiene la hora y la configuración de la BIOS. Si falla, la fecha se reinicia en cada apagado. Para “resetear” la BIOS se retira unos minutos.'],
+      bios:['Chip de BIOS/UEFI','Memoria flash con el firmware que arranca la PC (POST) y guarda la configuración básica.'],
+      fpanel:['Header de panel frontal','Pines para botón de encendido, reset y LEDs. Mirar el diagrama impreso en la placa o el manual.'],
+      io:['Panel I/O trasero','USB, red RJ45, audio, video (HDMI/DP). Es la “cara externa” de la placa.']
+    }
+  };
+  return {map,spots};
+})();
+</script><script>/* ============================================================
+   Motor del sitio: dibuja páginas, quizzes y mini-juegos.
+   Funciona igual como sitio completo (mode:'site') o como
+   fragmento para incrustar en Google Sites (mode:'embed').
+   ============================================================ */
+(function(){
+'use strict';
+const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+const shuffle = a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const store = {
+  get(k){try{return localStorage.getItem('rst:'+k)}catch(e){return null}},
+  set(k,v){try{localStorage.setItem('rst:'+k,v)}catch(e){}}
+};
+const NOTE = {tip:['','💡 Dato útil'],warn:['warn','⚠️ Cuidado'],safe:['safe','🛡️ Seguridad'],bad:['bad','❌ Error común']};
+
+/* ---------------- QUIZ ---------------- */
+function quiz(el, items, opt={}){
+  let i=0, score=0;
+  const order = shuffle(items.map((_,k)=>k));
+  function show(){
+    if(i>=items.length) return end();
+    const it = items[order[i]];
+    const opts = shuffle(it.o.map((t,k)=>({t,k})));
+    el.innerHTML = `<div class="quiz-box">
+      <div class="q-top"><span>${opt.label||'Pregunta'} ${i+1} de ${items.length}</span><span>⭐ ${score} acierto${score===1?'':'s'}</span></div>
+      <div class="progress"><i style="width:${i/items.length*100}%"></i></div>
+      ${it.ctx?`<div class="q-ctx">${it.ctx}</div>`:''}
+      <div class="q-text">${it.q}</div>
+      <div class="opts">${opts.map(o=>`<button class="opt" data-k="${o.k}">${o.t}</button>`).join('')}</div>
+      <div class="why"></div>
+      <div style="margin-top:12px;text-align:right"><button class="btn dark sm next" style="display:none">${i+1<items.length?'Siguiente →':'Ver resultado'}</button></div>
+    </div>`;
+    $$('.opt',el).forEach(b=>b.addEventListener('click',()=>{
+      const k = +b.dataset.k, good = k===it.a;
+      $$('.opt',el).forEach(x=>{x.disabled=true; if(+x.dataset.k===it.a) x.classList.add('right')});
+      if(good) score++; else b.classList.add('wrong');
+      const w = $('.why',el);
+      w.innerHTML = (good?'✅ <b>¡Correcto!</b> ':'❌ <b>No exactamente.</b> ')+(it.why||'');
+      w.classList.add('on');
+      $('.next',el).style.display='inline-flex';
+    }));
+    $('.next',el).addEventListener('click',()=>{i++;show()});
+  }
+  function end(){
+    const pct = Math.round(score/items.length*100);
+    const [medal,msg] = pct===100?['🏆','¡Perfecto! Dominas el tema.']:pct>=70?['🥇','¡Muy bien! Estás listo para la práctica.']:pct>=50?['🥈','Vas bien, repasa los puntos que fallaste.']:['📘','Repasa el contenido y vuelve a intentarlo.'];
+    if(opt.key){const prev=+store.get('q:'+opt.key)||0; if(pct>prev) store.set('q:'+opt.key,pct)}
+    el.innerHTML = `<div class="quiz-box result"><div class="medal">${medal}</div><div class="score">${score}/${items.length}</div><p><b>${pct}%</b> · ${msg}</p><button class="btn dark">🔄 Intentar de nuevo</button></div>`;
+    $('.btn',el).addEventListener('click',()=>{i=0;score=0;show()});
+  }
+  show();
+}
+
+/* ---------------- EMPAREJAR ---------------- */
+function match(el,g){
+  const L = g.pairs.map((p,i)=>({t:p[0],i}));
+  const R = shuffle(g.pairs.map((p,i)=>({t:p[1],i})));
+  let sel=null, ok=0, tries=0;
+  el.innerHTML = `<div class="match"><div class="col" data-s="l">${L.map(x=>`<button class="mchip" data-i="${x.i}">${x.t}</button>`).join('')}</div><div class="col" data-s="r">${R.map(x=>`<button class="mchip" data-i="${x.i}">${x.t}</button>`).join('')}</div></div>
+  <div class="stat-row"><span>Parejas: <b class="ok">0</b>/${g.pairs.length}</span><span>Intentos: <b class="tr">0</b></span><span class="fin"></span></div>`;
+  $$('.mchip',el).forEach(b=>b.addEventListener('click',()=>{
+    if(b.classList.contains('ok')) return;
+    const side = b.parentElement.dataset.s;
+    if(!sel || sel.side===side){
+      $$('.mchip.sel',el).forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel'); sel={side,i:+b.dataset.i,b}; return;
+    }
+    tries++; $('.tr',el).textContent=tries;
+    if(sel.i===+b.dataset.i){
+      sel.b.classList.remove('sel'); sel.b.classList.add('ok'); b.classList.add('ok'); ok++;
+      $('.ok',el).textContent=ok;
+      if(ok===g.pairs.length) $('.fin',el).innerHTML='🎉 <b>¡Completado!</b> '+(tries===ok?'Sin errores 🏆':'Con '+(tries-ok)+' error(es).');
+    }else{
+      [sel.b,b].forEach(x=>{x.classList.add('shake');setTimeout(()=>x.classList.remove('shake'),400)});
+      sel.b.classList.remove('sel');
+    }
+    sel=null;
+  }));
+}
+
+/* ---------------- ORDENAR ---------------- */
+function order(el,g){
+  let arr;
+  const mix = ()=>{do{arr=shuffle(g.items.map((t,i)=>({t,i})))}while(arr.every((x,k)=>x.i===k)&&arr.length>1)};
+  mix();
+  function draw(res){
+    el.innerHTML = `<ol class="order">${arr.map((x,k)=>`<li class="${res?(x.i===k?'ok':'bad'):''}"><span class="num">${k+1}</span><span class="tx">${x.t}</span><span class="mv"><button data-k="${k}" data-d="-1" aria-label="Subir">▲</button><button data-k="${k}" data-d="1" aria-label="Bajar">▼</button></span></li>`).join('')}</ol>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px"><button class="btn dark sm chk">✔ Comprobar orden</button><button class="btn line sm mx">🔀 Mezclar</button></div><div class="stat-row"><span class="fin"></span></div>`;
+    $$('.mv button',el).forEach(b=>b.addEventListener('click',()=>{
+      const k=+b.dataset.k, d=+b.dataset.d, j=k+d; if(j<0||j>=arr.length) return;
+      [arr[k],arr[j]]=[arr[j],arr[k]]; draw();
+    }));
+    $('.chk',el).addEventListener('click',()=>{
+      draw(true);
+      const good = arr.filter((x,k)=>x.i===k).length;
+      $('.fin',el).innerHTML = good===arr.length?'🎉 <b>¡Orden correcto!</b>':`Vas ${good} de ${arr.length} en su lugar. Los rojos están mal ubicados.`;
+    });
+    $('.mx',el).addEventListener('click',()=>{mix();draw()});
+  }
+  draw();
+}
+
+/* ---------------- CLASIFICAR ---------------- */
+function classify(el,g){
+  let q, i, score, busy;
+  function start(){q=shuffle(g.items);i=0;score=0;busy=false;show()}
+  function show(){
+    if(i>=q.length){
+      el.innerHTML=`<div class="result"><div class="medal">${score===q.length?'🏆':score>=q.length*.7?'🥇':'📘'}</div><div class="score">${score}/${q.length}</div><p>${score===q.length?'¡Clasificación perfecta!':'Repasa las categorías y vuelve a intentarlo.'}</p><button class="btn dark">🔄 Jugar otra vez</button></div>`;
+      $('.btn',el).addEventListener('click',start); return;
+    }
+    el.innerHTML=`<div class="stat-row" style="margin:0 0 6px"><span>Elemento <b>${i+1}</b>/${q.length}</span><span>Aciertos: <b>${score}</b></span></div>
+      <div class="cls-card">${q[i][0]}</div><div class="cls-opts">${g.cats.map((c,k)=>`<button class="btn dark" data-k="${k}">${c}</button>`).join('')}</div><div class="stat-row"><span class="fb"></span></div>`;
+    $$('.cls-opts button',el).forEach(b=>b.addEventListener('click',()=>{
+      if(busy) return; busy=true;
+      const good=+b.dataset.k===q[i][1], card=$('.cls-card',el);
+      card.classList.add(good?'flash-ok':'flash-bad');
+      if(good) score++;
+      $('.fb',el).innerHTML = good?'✅ ¡Correcto!':`❌ Era: <b>${g.cats[q[i][1]]}</b>${q[i][2]?' — '+q[i][2]:''}`;
+      setTimeout(()=>{i++;busy=false;show()}, good?650:1900);
+    }));
+  }
+  start();
+}
+
+/* ---------------- MEMORIA ---------------- */
+function flip(el,g){
+  const cards = shuffle(g.pairs.flatMap((p,i)=>[{t:p[0],i,id:i+'a'},{t:p[1],i,id:i+'b'}]));
+  let open=[], done=0, moves=0, lock=false;
+  el.innerHTML = `<div class="memory">${cards.map((c,k)=>`<button class="mem" data-k="${k}"><div class="in"><div class="f">🔧</div><div class="b">${c.t}</div></div></button>`).join('')}</div><div class="stat-row"><span>Parejas: <b class="dn">0</b>/${g.pairs.length}</span><span>Movimientos: <b class="mv">0</b></span><span class="fin"></span></div>`;
+  $$('.mem',el).forEach(b=>b.addEventListener('click',()=>{
+    if(lock||b.classList.contains('flip')||b.classList.contains('done')) return;
+    b.classList.add('flip'); open.push(b);
+    if(open.length===2){
+      moves++; $('.mv',el).textContent=moves; lock=true;
+      const [a,c]=open.map(x=>cards[+x.dataset.k]);
+      setTimeout(()=>{
+        if(a.i===c.i){open.forEach(x=>{x.classList.remove('flip');x.classList.add('done')});done++;$('.dn',el).textContent=done;
+          if(done===g.pairs.length) $('.fin',el).innerHTML='🎉 <b>¡Lo lograste!</b> en '+moves+' movimientos.'}
+        else open.forEach(x=>x.classList.remove('flip'));
+        open=[];lock=false;
+      },a.i===c.i?350:900);
+    }
+  }));
+}
+
+/* ---------------- TERMINAL SIMULADA ---------------- */
+function terminal(el,g){
+  const keys = Object.keys(g.cmds);
+  el.innerHTML = `${g.task?`<div class="note"><b class="t">🎯 Reto</b>${g.task}</div>`:''}
+    <div class="cmd"><div class="bar"><i></i><i></i><i></i>&nbsp; ${g.shell||'Símbolo del sistema (simulado)'}</div><div class="out"></div><div class="in-row"><span>${g.prompt||'C:\\&gt;'}</span><input type="text" autocomplete="off" spellcheck="false" aria-label="Comando" placeholder="escribe un comando y presiona Enter"></div></div>
+    <div class="chips">${keys.map(k=>`<button data-c="${k}">${k}</button>`).join('')}<button data-c="help">help</button></div>`;
+  const out=$('.out',el), inp=$('input',el);
+  const print = t=>{out.textContent += t+'\n'; out.scrollTop=out.scrollHeight};
+  print(g.intro||'Simulador educativo. Escribe "help" para ver los comandos disponibles.');
+  function run(line){
+    const t=line.trim(); if(!t) return;
+    print((g.prompt||'C:\\>').replace('&gt;','>')+' '+t);
+    const low=t.toLowerCase(), first=low.split(/\s+/)[0];
+    if(first==='help'||first==='ayuda') print('Comandos disponibles:\n  '+keys.join('\n  ')+'\n  cls  (limpia la pantalla)');
+    else if(first==='cls'||first==='clear') out.textContent='';
+    else if(g.cmds[low]) print(g.cmds[low]);
+    else if(g.cmds[first]) print(g.cmds[first]);
+    else print(`'${first}' no se reconoce o no está en este simulador. Escribe help.`);
+    print('');
+  }
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){run(inp.value);inp.value=''}});
+  $$('.chips button',el).forEach(b=>b.addEventListener('click',()=>{run(b.dataset.c);inp.focus()}));
+}
+
+/* ---------------- HOTSPOTS ---------------- */
+function hotspot(el,g){
+  const spots = ART.spots[g.art], svg = ART.map[g.art]();
+  el.innerHTML = `<div class="hot"><div>${svg}</div><div class="info"><h4>👆 Toca una pieza</h4><p>Selecciona cualquier componente del diagrama para ver qué hace y cómo reconocerlo.</p></div></div>
+  <div class="stat-row"><span>Explorados: <b class="n">0</b>/${Object.keys(spots).length}</span></div>`;
+  const seen=new Set();
+  $$('[data-id]',el).forEach(n=>n.addEventListener('click',()=>{
+    $$('[data-id]',el).forEach(x=>x.classList.remove('sel')); n.classList.add('sel');
+    const s=spots[n.dataset.id]; if(!s) return;
+    $('.info',el).innerHTML=`<h4>${s[0]}</h4><p>${s[1]}</p>`;
+    seen.add(n.dataset.id); $('.n',el).textContent=seen.size;
+  }));
+}
+
+/* ---------------- Juego genérico ---------------- */
+const GAMES = {match,order,classify,flip,terminal,hotspot,quiz:(el,g)=>quiz(el,g.items,{label:g.label||'Caso'})};
+function gameBlock(g){
+  return `<div class="game"><div class="game-head"><span class="gi">${g.icon||'🎮'}</span><h3>${g.title}</h3></div>${g.hint?`<div class="hint">${g.hint}</div>`:''}<div class="gbody" data-type="${g.type}"></div></div>`;
+}
+function mountGames(root,list){
+  $$('.gbody',root).forEach((el,k)=>{ const g=list[k]; if(g&&GAMES[g.type]) GAMES[g.type](el,g); });
+}
+
+/* ---------------- Bloques de contenido ---------------- */
+function sectionHTML(s){
+  let h = `<div class="sec">${s.h?`<h3><span class="dot"></span>${s.h}</h3>`:''}`;
+  (Array.isArray(s.p)?s.p:s.p?[s.p]:[]).forEach(p=>h+=`<p>${p}</p>`);
+  if(s.list) h+=`<ul>${s.list.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+  if(s.ol) h+=`<ol>${s.ol.map(x=>`<li>${x}</li>`).join('')}</ol>`;
+  if(s.kv) h+=`<div class="kv">${s.kv.map(k=>`<div><b>${k[0]}</b><span>${k[1]}</span></div>`).join('')}</div>`;
+  if(s.table) h+=`<div class="tblwrap"><table><thead><tr>${s.table.head.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${s.table.rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  if(s.art) h+=`<figure class="art">${ART.map[s.art]()}${s.cap?`<figcaption>${s.cap}</figcaption>`:''}</figure>`;
+  if(s.term) h+=`<pre class="term">${s.term}</pre>`;
+  (Array.isArray(s.note)?s.note:s.note?[s.note]:[]).forEach(n=>{const d=NOTE[n.k||'tip'];h+=`<div class="note ${d[0]}"><b class="t">${n.t||d[1]}</b>${n.x}</div>`});
+  return h+'</div>';
+}
+function videoHTML(v){
+  if(!v) return '';
+  const q = v.q?`https://www.youtube.com/results?search_query=${encodeURIComponent(v.q)}`:null;
+  if(v.id) return `<h3 class="section-title" style="margin-top:8px">🎬 Video recomendado</h3><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${v.id}" title="${v.title||'Video'}" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div><p style="font-size:.88rem;color:var(--muted)">${v.title||''} · <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">Abrir en YouTube ↗</a></p>`;
+  return `<h3 class="section-title" style="margin-top:8px">🎬 Video sugerido</h3><div class="videoalt"><div class="pl">▶️</div><div><b>${v.title||'Busca un video de apoyo'}</b><br><span style="color:var(--muted);font-size:.9rem">Reemplaza este recuadro por el video que elijas (ver README) o <a href="${q}" target="_blank" rel="noopener">búscalo en YouTube ↗</a></span></div></div>`;
+}
+function checklistHTML(items,key){
+  return `<div class="progress"><i></i></div><ul class="check" data-key="${key}">${items.map((t,k)=>`<li data-k="${k}"><input type="checkbox"><span>${t}</span></li>`).join('')}</ul><div class="stat-row"><span class="cnt"></span></div>`;
+}
+function mountChecklists(root){
+  $$('ul.check',root).forEach(ul=>{
+    const key='c:'+ul.dataset.key; let saved=[]; try{saved=JSON.parse(store.get(key)||'[]')}catch(e){}
+    const lis=$$('li',ul), bar=ul.previousElementSibling.firstElementChild, cnt=ul.nextElementSibling.firstElementChild;
+    const upd=()=>{const n=lis.filter(l=>l.classList.contains('done')).length;bar.style.width=(n/lis.length*100)+'%';cnt.innerHTML=`Completado: <b>${n}</b> de ${lis.length}`+(n===lis.length?' 🎉':'');store.set(key,JSON.stringify(lis.map((l,k)=>l.classList.contains('done')?k:-1).filter(k=>k>=0)))};
+    lis.forEach((li,k)=>{
+      const cb=$('input',li); if(saved.includes(k)){li.classList.add('done');cb.checked=true}
+      li.addEventListener('click',e=>{ if(e.target!==cb) cb.checked=!cb.checked; li.classList.toggle('done',cb.checked); upd(); });
+    });
+    upd();
+  });
+}
+
+/* ---------------- Tipos de página ---------------- */
+function weekPage(P,ctx){
+  const col = P.color;
+  const tabs = [['contenido','📖 Contenido']];
+  tabs.push(['practica','🛠️ Práctica']);
+  if(P.games&&P.games.length) tabs.push(['juego','🎮 Mini-juego'+(P.games.length>1?'s':'')]);
+  if(P.quiz&&P.quiz.length) tabs.push(['quiz','📝 Quiz']);
+  const pr = P.practice;
+  let h = `<div style="--c:${col}">`;
+  if(ctx.mode==='embed') h+=`<div class="week-head"><div><span class="badge">${P.unitLabel} · Semana ${P.n}</span><h2>${P.title}</h2><p>${P.summary}</p></div><div class="big">${P.icon}</div></div>`;
+  h+=`<div class="tabs" role="tablist">${tabs.map((t,k)=>`<button data-t="${t[0]}" class="${k?'':'on'}">${t[1]}</button>`).join('')}</div>`;
+  h+=`<div class="pane on" data-p="contenido"><div class="objectives"><h4>🎯 Al terminar esta semana podrás…</h4><ul>${P.objectives.map(o=>`<li>${o}</li>`).join('')}</ul></div>${P.sections.map(sectionHTML).join('')}${videoHTML(P.video)}</div>`;
+  h+=`<div class="pane" data-p="practica"><div class="sec"><h3><span class="dot"></span>${pr.title}</h3><div class="meta"><span>⏱️ ${pr.time}</span>${pr.materials?`<span>🧰 ${pr.materials}</span>`:''}${pr.mode?`<span>👥 ${pr.mode}</span>`:''}</div>${pr.intro?`<p>${pr.intro}</p>`:''}${checklistHTML(pr.steps,P.id)}${pr.deliver?`<div class="note safe"><b class="t">📤 Entregable</b>${pr.deliver}</div>`:''}</div></div>`;
+  if(P.games&&P.games.length) h+=`<div class="pane" data-p="juego">${P.games.map(gameBlock).join('')}</div>`;
+  if(P.quiz&&P.quiz.length) h+=`<div class="pane" data-p="quiz"><div class="hint" style="color:var(--muted);margin-bottom:10px">Comprueba lo aprendido. No afecta tu nota: es para practicar. Las respuestas cambian de lugar cada intento.</div><div id="quizmount"></div></div>`;
+  h+=`</div>`;
+  return {html:h, mount(root){
+    const open=id=>{ $$('.tabs button',root).forEach(b=>b.classList.toggle('on',b.dataset.t===id)); $$('.pane',root).forEach(p=>p.classList.toggle('on',p.dataset.p===id)); };
+    $$('.tabs button',root).forEach(b=>b.addEventListener('click',()=>open(b.dataset.t)));
+    const hs=location.hash.replace('#',''); if(tabs.some(t=>t[0]===hs)) open(hs);
+    if(P.games) mountGames(root,P.games);
+    if(P.quiz&&P.quiz.length) quiz($('#quizmount',root),P.quiz,{key:P.id});
+    mountChecklists(root);
+  }};
+}
+
+function projectPage(P,ctx){
+  const h = `<div style="--c:${P.color}">
+  ${ctx.mode==='embed'?`<div class="week-head"><div><span class="badge">Proyecto ${P.n} · ${P.unitLabel}</span><h2>${P.title}</h2><p>${P.summary}</p></div><div class="big">${P.icon}</div></div>`:''}
+  <div class="sec"><h3><span class="dot"></span>🎯 El reto</h3>${P.intro.map(p=>`<p>${p}</p>`).join('')}<div class="kv">${P.facts.map(f=>`<div><b>${f[0]}</b><span>${f[1]}</span></div>`).join('')}</div></div>
+  <div class="sec"><h3><span class="dot"></span>📦 Entregables</h3><ul>${P.deliverables.map(d=>`<li>${d}</li>`).join('')}</ul></div>
+  <div class="sec"><h3><span class="dot"></span>🗓️ Cronograma</h3>${P.phases.map(p=>`<div class="phase"><b>${p[0]}</b><div><b style="all:unset;font-weight:600;color:var(--brand)">${p[1]}</b><br><span style="color:var(--muted);font-size:.93rem">${p[2]}</span></div></div>`).join('')}</div>
+  <div class="sec"><h3><span class="dot"></span>✅ Lista de avance</h3><p style="color:var(--muted);font-size:.92rem">Marca lo que ya hiciste (se guarda en este navegador).</p>${checklistHTML(P.checklist,P.id)}</div>
+  <div class="sec"><h3><span class="dot"></span>📊 Rúbrica (100 pts)</h3><div class="tblwrap"><table class="rubric"><thead><tr>${['Criterio','Excelente','Bien','Por mejorar','Pts'].map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${P.rubric.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div>${P.note?`<div class="note"><b class="t">💡 Consejo</b>${P.note}</div>`:''}</div></div>`;
+  return {html:h,mount(root){mountChecklists(root)}};
+}
+
+const ORD = ['1ra','2da','3ra'];
+
+function unitPage(P,ctx){
+  const wk = P.weeks.map(w=>{const b=+store.get('q:'+w.id)||0;return `<a class="ci" href="${ctx.href(w.id)}"><span class="c">${w.n}${b>=70?'<span class="star" title="Quiz aprobado">⭐</span>':''}</span><span class="lb">Semana ${w.n}</span><span class="sb">${w.title}</span></a>`}).join('');
+  return {html:`<div class="crumbs"><a href="${ctx.href('index')}">Inicio</a> › <a href="${ctx.href('contenidos')}">Contenidos</a> › ${P.label}</div>
+  <div class="grid g2" style="margin-bottom:6px"><div class="card"><h3 style="color:var(--accent)">🎯 Competencias de la unidad</h3><ul style="margin:0;padding-left:20px;color:var(--muted)">${P.goals.map(g=>`<li>${g}</li>`).join('')}</ul></div><div class="card"><h3 style="color:var(--accent)">🧩 Proyecto de la unidad</h3><p><b>${P.project.title}:</b> ${P.project.text}</p><br><a class="btn sm" href="${ctx.href(P.project.id)}">Ver proyecto →</a></div></div>
+  <h2 class="section-title">📅 Semanas de trabajo</h2><div class="circles">${wk}</div>`,mount(){}};
+}
+
+function contentsPage(P,ctx){
+  const S=ctx.site;
+  return {html:`<div class="circles big">${S.units.map((u,i)=>`<a class="ci" href="${ctx.href(u.id)}"><span class="c">${i+1}</span><span class="lb">${ORD[i]} unidad</span><span class="sb">${u.name}</span></a>`).join('')}</div>
+  <div class="grid g3" style="margin-top:36px">${S.units.map(u=>`<div class="card"><h3 style="color:var(--accent)">${u.label}</h3><p style="margin-bottom:8px;color:var(--ink)"><b>${u.name}</b></p><p>${u.desc}</p></div>`).join('')}</div>`,mount(){}};
+}
+
+function homePage(P,ctx){
+  const S=ctx.site; const nWeeks=S.units.reduce((a,u)=>a+u.weeks.length,0);
+  const uc=S.units.map((u,i)=>`<a class="ci" href="${ctx.href(u.id)}"><span class="c">${i+1}</span><span class="lb">${ORD[i]} unidad</span><span class="sb">${u.name}</span></a>`).join('');
+  const pc=S.projects.map(p=>`<a class="ci" href="${ctx.href(p.id)}"><span class="c emo">${p.icon}</span><span class="lb">Proyecto ${p.n}</span><span class="sb">${p.short}</span></a>`).join('');
+  return {html:`<div class="welcome"><h2>¡Bienvenidos a nuestro espacio digital de Reparación y Soporte Técnico!</h2><p>Aquí encontrarás las clases de cada semana, prácticas de taller, mini-juegos y quizzes para aprender a mantener, diagnosticar y dar soporte a computadoras y equipos de laboratorio.</p><hr></div>
+  <div class="infos">
+   <div class="info-c"><div class="c">🎯</div><h3>Propósito</h3><p>Formar técnicos responsables que cuiden los equipos, resuelvan fallas con método y atiendan a las personas con respeto.</p></div>
+   <div class="info-c"><div class="c">🔧</div><h3>Competencias</h3><p>Hardware, BIOS, sistemas operativos, redes básicas, fallas de software, soporte remoto con AnyDesk y documentación técnica.</p></div>
+   <div class="info-c"><div class="c">🤖</div><h3>Perfil del estudiante</h3><p>Curioso, ordenado y seguro en el taller; capaz de apoyar al laboratorio de robótica y a su comunidad educativa.</p></div>
+  </div>
+  <div class="stats"><div class="stat"><b>3</b><span>Unidades</span></div><div class="stat"><b>${nWeeks}</b><span>Semanas</span></div><div class="stat"><b>3</b><span>Proyectos</span></div><div class="stat"><b>${S.gamesCount}</b><span>Mini-juegos</span></div><div class="stat"><b>${nWeeks}</b><span>Quizzes</span></div></div>
+  <h2 class="section-title">📚 Unidades de trabajo</h2><div class="circles big">${uc}</div>
+  <h2 class="section-title">🧩 Proyectos</h2><div class="circles">${pc}</div>
+  <h2 class="section-title">🧭 ¿Cómo usar este sitio?</h2>
+  <div class="grid g4"><div class="card"><span class="ico">📖</span><h3>1. Lee</h3><p>Cada semana tiene su pestaña de contenido con objetivos, tablas, esquemas y video.</p></div><div class="card"><span class="ico">🛠️</span><h3>2. Practica</h3><p>Sigue la lista de pasos del taller y marca lo que ya hiciste.</p></div><div class="card"><span class="ico">🎮</span><h3>3. Juega</h3><p>Mini-juegos para reforzar: emparejar, ordenar, clasificar y más.</p></div><div class="card"><span class="ico">📝</span><h3>4. Evalúate</h3><p>Un quiz corto con retroalimentación inmediata. ¡Consigue la estrella ⭐!</p></div></div>
+  <h2 class="section-title">🔧 Reglas de oro del taller</h2>
+  <div class="grid g3"><div class="card"><span class="ico">🛡️</span><h3>Seguridad primero</h3><p>Equipo apagado y desconectado, pulsera antiestática y manos secas.</p></div><div class="card"><span class="ico">🧹</span><h3>Orden y limpieza</h3><p>Tornillos clasificados, mesa despejada y herramientas en su lugar al terminar.</p></div><div class="card"><span class="ico">📝</span><h3>Documenta todo</h3><p>Anota síntomas, pasos y resultados. Si no está escrito, no ocurrió.</p></div></div>`,mount(){}};
+}
+
+function gamesPage(P,ctx){
+  const S=ctx.site;
+  const list = S.units.map(u=>`<h3 style="margin-top:18px;color:${u.color}">${u.label} · ${u.name}</h3><div class="chips" style="margin-top:6px">${u.weeks.filter(w=>w.games.length).map(w=>ctx.mode==='site'?`<a class="btn line sm" href="${ctx.href(w.id)}#juego" style="font-family:inherit">S${w.n} · ${w.games.join(' · ')}</a>`:`<span class="btn line sm" style="font-family:inherit">S${w.n} · ${w.games.join(' · ')}</span>`).join('')}</div>`).join('');
+  return {html:`<div class="note"><b class="t">🕹️ Retos extra</b>Estos juegos no pertenecen a una semana específica: úsalos como calentamiento o repaso antes de un examen.</div>${P.games.map(gameBlock).join('')}${ctx.mode==='site'?`<h2 class="section-title">🎯 Juegos por semana</h2>${list}`:''}`,mount(root){mountGames(root,P.games)}};
+}
+
+function glossaryPage(P,ctx){
+  return {html:`<input class="search" id="gq" type="search" placeholder="🔎 Buscar término (ej. BIOS, RAM, ping…)" aria-label="Buscar"><div class="gl" id="gl">${P.terms.map(t=>`<div data-k="${(t[0]+' '+t[1]).toLowerCase()}"><b>${t[0]}</b><small>${t[2]}</small>${t[1]}</div>`).join('')}</div><p id="gn" style="display:none;color:var(--muted);text-align:center">No se encontró ese término.</p>`,mount(root){
+    const q=$('#gq',root);q.addEventListener('input',()=>{const v=q.value.toLowerCase().trim();let n=0;$$('#gl div',root).forEach(d=>{const s=!v||d.dataset.k.includes(v);d.style.display=s?'':'none';if(s)n++});$('#gn',root).style.display=n?'none':'block'});
+  }};
+}
+
+function projectsPage(P,ctx){
+  return {html:`<div class="circles big">${P.projects.map(p=>`<a class="ci" href="${ctx.href(p.id)}"><span class="c emo">${p.icon}</span><span class="lb">Proyecto ${p.n}</span><span class="sb">${p.title}</span></a>`).join('')}</div>
+  <div class="grid g3" style="margin-top:36px">${P.projects.map(p=>`<div class="card"><span class="tag">${p.unitLabel}</span><h3>${p.title}</h3><p>${p.summary}</p></div>`).join('')}</div>`,mount(){}};
+}
+
+const TYPES={contents:contentsPage,week:weekPage,project:projectPage,projects:projectsPage,unit:unitPage,home:homePage,games:gamesPage,glossary:glossaryPage};
+
+/* ---------------- Marco del sitio ---------------- */
+function navHTML(S,ctx,P){
+  const on = (id,types)=>(P.id===id||P.parent===id||(types&&types.includes(P.type)))?' on':'';
+  const items = [`<div class="item"><a class="top${on('index')}" href="${ctx.href('index')}">Inicio</a></div>`];
+  items.push(`<div class="item"><a class="top${on('contenidos',['contents','unit','week'])}" href="${ctx.href('contenidos')}">Contenidos</a><div class="drop">${S.units.map((u,i)=>`<a class="${P.unitId===u.id||P.id===u.id?'on':''}" href="${ctx.href(u.id)}">${u.label} · ${u.name}</a>`).join('')}</div></div>`);
+  items.push(`<div class="item"><a class="top${on('proyectos',['projects','project'])}" href="${ctx.href('proyectos')}">Proyectos</a><div class="drop">${S.projects.map(p=>`<a class="${P.id===p.id?'on':''}" href="${ctx.href(p.id)}">${p.icon} Proyecto ${p.n}: ${p.short}</a>`).join('')}</div></div>`);
+  items.push(`<div class="item"><a class="top${on('juegos')}" href="${ctx.href('juegos')}">Juegos</a></div>`);
+  items.push(`<div class="item"><a class="top${on('glosario')}" href="${ctx.href('glosario')}">Glosario</a></div>`);
+  return items.join('');
+}
+
+function pagerHTML(P,ctx){
+  if(P.type!=='week') return '';
+  const u=ctx.site.units.find(x=>x.id===P.unitId), k=u.weeks.findIndex(w=>w.id===P.id);
+  const prev=u.weeks[k-1], next=u.weeks[k+1];
+  return `<div class="pager">${prev?`<a class="btn line" href="${ctx.href(prev.id)}">← Semana ${prev.n}</a>`:`<a class="btn line" href="${ctx.href(u.id)}">← ${u.label}</a>`}${next?`<a class="btn dark" href="${ctx.href(next.id)}">Semana ${next.n}: ${next.title} →</a>`:`<a class="btn dark" href="${ctx.href(u.id==='unidad-3'?'proyectos':ctx.site.units[ctx.site.units.indexOf(u)+1].id)}">Continuar →</a>`}</div>`;
+}
+
+function heroText(P){
+  switch(P.type){
+    case 'home': return {h:'Reparación y Soporte Técnico',it:true,tag:'5to Bachillerato · Computación · Robótica'};
+    case 'week': return {h:'Semana '+P.n};
+    case 'unit': return {h:ORD[P.unit-1]+' Unidad'};
+    case 'contents': return {h:'Unidades'};
+    case 'projects': return {h:'Proyectos'};
+    case 'project': return {h:'Proyecto '+P.n};
+    case 'games': return {h:'Zona de juegos'};
+    default: return {h:P.title};
+  }
+}
+function bandHTML(P,ctx){
+  const sub = t=>`<p class="it" style="font-size:1rem;font-weight:400;margin-top:10px;opacity:.95">${t}</p>`;
+  switch(P.type){
+    case 'home': return `<section class="band"><div class="emblem">🛠️</div><div class="cta"><a class="btn white" href="${ctx.href('unidad-1')}">Comenzar Unidad 1 →</a><a class="btn ghost" href="${ctx.href('juegos')}">🎮 Zona de juegos</a></div></section>`;
+    case 'week': return `<section class="band"><h2>${P.icon} ${P.title}</h2>${sub(P.summary)}</section>`;
+    case 'project': return `<section class="band"><h2>${P.icon} ${P.title}</h2>${sub(P.summary)}</section>`;
+    case 'unit': return `<section class="band"><p class="it">${P.heroTitle}</p>${sub(P.sub)}</section>`;
+    case 'contents': return `<section class="band"><p class="it">¡Haz click en los íconos para ingresar a la unidad correspondiente!</p></section>`;
+    default: return `<section class="band"><p class="it">${P.sub||''}</p></section>`;
+  }
+}
+
+function render(P,site,mode){
+  const ctx={site,mode,href:id=>id==='index'?'index.html':id+'.html'};
+  const comp=TYPES[P.type](P,ctx);
+  const app=document.getElementById('app');
+  if(mode==='embed'){
+    document.body.classList.add('embed');
+    app.innerHTML=`<div class="wrap">${comp.html}</div>`;
+    comp.mount(app); return;
+  }
+  const crumbs = P.type==='week'?`<div class="crumbs"><a href="${ctx.href('index')}">Inicio</a> › <a href="${ctx.href(P.unitId)}">${P.unitLabel}</a> › Semana ${P.n}</div>`:P.type==='project'?`<div class="crumbs"><a href="${ctx.href('index')}">Inicio</a> › <a href="${ctx.href('proyectos')}">Proyectos</a> › Proyecto ${P.n}</div>`:'';
+  const ht=heroText(P);
+  document.title = (P.type==='home'?'':P.title+' · ')+site.title;
+  app.innerHTML=`<header class="site-header" id="hdr"><div class="in"><button class="burger" aria-label="Menú">☰</button><a class="brand" href="${ctx.href('index')}"><span class="logo">🛠️</span>${site.shortTitle}</a><nav class="nav">${navHTML(site,ctx,P)}</nav></div></header>
+  <section class="hero${P.type==='home'?' tall':''}"><div class="in"><h1${ht.it?' class="it"':''}>${ht.h}</h1><span class="bar"></span>${ht.tag?`<p class="tag">${ht.tag}</p>`:''}</div></section>${bandHTML(P,ctx)}
+  <main class="wrap">${crumbs}${comp.html}${pagerHTML(P,ctx)}</main>
+  <footer class="site-footer"><a class="fb" href="${ctx.href('index')}">Página Principal</a><a class="fb" href="${ctx.href('contenidos')}">Unidades de Trabajo</a><small>${site.footer}</small></footer>`;
+  const hdr=$('#hdr',app), nav=$('.nav',app);
+  const sync=()=>hdr.classList.toggle('solid',window.scrollY>40||nav.classList.contains('open'));
+  window.addEventListener('scroll',sync,{passive:true});
+  $('.burger',app).addEventListener('click',()=>{nav.classList.toggle('open');sync()});
+  sync();
+  comp.mount(app);
+}
+
+window.RST={render};
+})();
+</script><script>window.PAGE={"type":"project","parent":"proyectos","eyebrow":"Proyecto 3 · Unidad 3","sub":"Monta un servicio de soporte con tickets, bitácora y sesiones remotas reales o simuladas.","heroTitle":"🎧 Mesa de ayuda del colegio","id":"proyecto-3","n":3,"unitLabel":"Unidad 3","color":"#e07a2c","icon":"🎧","title":"Mesa de ayuda del colegio","short":"Mesa de ayuda","summary":"Monta un servicio de soporte con tickets, bitácora y sesiones remotas reales o simuladas.","intro":["El colegio desea un servicio de soporte para docentes y estudiantes. Tu equipo montará una \u003cb>mesa de ayuda\u003c/b> con formulario de tickets, protocolo de atención, soporte remoto y base de conocimiento.","Será tu proyecto final: integra hardware, software, redes, atención al usuario y documentación."],"facts":[["⏱️ Duración","Semanas 6 a 10 de la Unidad 3"],["👥 Equipo","Grupos de 4 estudiantes con roles"],["🧰 Recursos","Google Forms/Sheets, AnyDesk, equipos del laboratorio"],["🎯 Producto","Mesa de ayuda funcionando + informe + presentación"]],"deliverables":["Formulario de tickets (Google Forms) conectado a una hoja de cálculo.","Protocolo de atención: saludo, preguntas clave, método de 6 pasos, cierre.","Protocolo de soporte remoto seguro (con AnyDesk) y guion de sesión.","Inventario del laboratorio con código y estado.","Base de conocimiento: 8 fichas “Problema → Solución” escritas para usuarios no técnicos.","Informe técnico de 3 casos reales o simulados con evidencias.","Presentación y simulacro de 15 minutos."],"phases":[["Sem. 6","Diseño","Roles del equipo, formulario de tickets y protocolo de atención."],["Sem. 7","Soporte remoto","Sesiones con AnyDesk (real o simulado) y registro."],["Sem. 8","Documentación","Inventario, base de conocimiento e informes."],["Sem. 9","Piloto","Atender casos reales de compañeros y de otros grados."],["Sem. 10","Simulacro final","Rotación de tickets y presentación del proyecto."]],"checklist":["Definimos roles (coordinador, N1, N2, documentador)","Creamos el formulario de tickets","Redactamos el protocolo de atención","Redactamos el protocolo de soporte remoto","Realizamos una sesión remota con permiso","Completamos el inventario del laboratorio","Escribimos 8 fichas de la base de conocimiento","Atendimos al menos 5 tickets reales o simulados","Redactamos el informe técnico","Ensayamos la presentación"],"rubric":[["Atención al usuario y comunicación","Empática, clara y profesional siempre","Buena con detalles","Poco clara","20"],["Aplicación del método de diagnóstico","Los 6 pasos aplicados y documentados","Aplica casi todos","Desordenado","20"],["Soporte remoto seguro","Protocolo completo y respetado","Protocolo parcial","Sin medidas de seguridad","20"],["Documentación (tickets, inventario, base de conocimiento)","Completa, ordenada y útil","Algunos huecos","Incompleta","25"],["Presentación y trabajo en equipo","Excelente coordinación","Aceptable","Poca participación","15"]],"note":"Ofrece el servicio piloto a los grados de primaria: ¡es una oportunidad real de ayudar y practicar!"};RST.render(PAGE,{},'embed');</script></body></html>
