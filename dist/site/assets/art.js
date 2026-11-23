@@ -49,19 +49,19 @@ window.ART = (function(){
     <text x="380" y="140" text-anchor="middle" fill="#5b6678" font-size="12" ${F}>Un fallo en cada etapa produce síntomas distintos: sin energía, pitidos, “No bootable device”, pantalla azul…</text>`);
 
   const network = () => svg(760,210,`
-    ${box(20,70,120,70,'💻 PC','#2e3340','#fff',16,'192.168.1.25')}
-    ${box(220,70,130,70,'📡 Router','#566074','#fff',16,'Puerta: 192.168.1.1')}
-    ${box(430,70,120,70,'🌐 DNS','#e07a2c','#fff',16,'8.8.8.8')}
-    ${box(630,70,110,70,'☁️ Internet','#1e9e5a','#fff',16)}
+    ${box(20,70,120,70,'PC','#2e3340','#fff',16,'192.168.1.25')}
+    ${box(220,70,130,70,'Router','#566074','#fff',16,'Puerta: 192.168.1.1')}
+    ${box(430,70,120,70,'DNS','#e07a2c','#fff',16,'8.8.8.8')}
+    ${box(630,70,110,70,'Internet','#1e9e5a','#fff',16)}
     ${arrow(140,105,218,105)}${arrow(350,105,428,105)}${arrow(550,105,628,105)}
     <text x="180" y="62" text-anchor="middle" font-size="12" fill="#5b6678" ${F}>ping 192.168.1.1</text>
     <text x="490" y="62" text-anchor="middle" font-size="12" fill="#5b6678" ${F}>nslookup</text>
     <text x="380" y="185" text-anchor="middle" font-size="13" fill="#1f232c" font-weight="600" ${F}>Prueba de adentro hacia afuera: PC → router → DNS → Internet</text>`);
 
   const remote = () => svg(760,230,`
-    ${box(20,60,180,100,'🧑‍💻 Técnico','#2e3340','#fff',16,'Controla el equipo')}
-    ${box(290,20,180,60,'🔒 Servidores AnyDesk','#ef443b','#fff',14,'Conexión cifrada')}
-    ${box(560,60,180,100,'🧑 Usuario','#1e9e5a','#fff',16,'Comparte su ID y acepta')}
+    ${box(20,60,180,100,'Técnico','#2e3340','#fff',16,'Controla el equipo')}
+    ${box(290,20,180,60,'Servidores AnyDesk','#ef443b','#fff',14,'Conexión cifrada')}
+    ${box(560,60,180,100,'Usuario','#1e9e5a','#fff',16,'Comparte su ID y acepta')}
     ${arrow(200,90,288,52)}${arrow(470,52,558,90)}
     <line x1="200" y1="135" x2="558" y2="135" stroke="#ff8a3d" stroke-width="3" stroke-dasharray="7 6"/>
     <text x="380" y="125" text-anchor="middle" fill="#c4600f" font-size="12" ${F}>sesión remota (pantalla, teclado, mouse, archivos)</text>
